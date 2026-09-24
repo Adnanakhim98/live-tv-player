@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>LIVE TV MATCH</title>
+<script src="https://cdn.jsdelivr.net/npm/shaka-player@4.16.3/dist/shaka-player.compiled.js"></script>
+<style>
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;background:#02040a;color:#fff;font-family:Arial,sans-serif}body{overflow:hidden}
+#home{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;background:radial-gradient(circle at 50% 43%,#123747 0,transparent 32%),linear-gradient(180deg,#01030a,#07131d 55%,#010207);position:relative;overflow:hidden}
+.brand{width:94vw;max-width:560px;z-index:2}.title{font-size:clamp(25px,7vw,38px);font-weight:900;letter-spacing:5px}.sub{margin-top:7px;color:#81929a;font-size:10px;letter-spacing:4px}
+.match{margin-top:35px;display:grid;grid-template-columns:1fr 70px 1fr;align-items:center;gap:4px}.team{min-width:0}.flag{width:clamp(90px,25vw,135px);height:clamp(90px,25vw,135px);margin:auto;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,#111d27,#02060b);border:2px solid #16d8ff;box-shadow:0 0 25px #16d8ff44,inset 0 0 25px #16d8ff18;font-size:clamp(50px,14vw,76px);cursor:pointer}.team.right .flag{border-color:#ff358b;box-shadow:0 0 25px #ff358b44,inset 0 0 25px #ff358b18}.name{margin-top:13px;font-size:clamp(14px,4vw,21px);font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.vs{font-size:clamp(30px,9vw,55px);font-weight:1000;font-style:italic;text-shadow:0 0 15px #00d9ff,0 0 25px #ff358b}.play{margin:38px auto 0;width:min(82vw,330px);padding:15px;border:1px solid #16d8ff;border-radius:40px;color:#35e2ff;background:#00baff0d;box-shadow:0 0 22px #16d8ff33;font-weight:900;letter-spacing:2px;cursor:pointer}.hint{margin-top:11px;color:#71838c;font-size:10px;letter-spacing:2px}
+#playerPage{display:none;position:fixed;inset:0;background:#000;z-index:50}video{width:100%;height:100%;object-fit:contain;background:#000}#back{position:absolute;top:16px;left:16px;z-index:60;width:46px;height:46px;border:1px solid #ffffff44;border-radius:50%;background:#000b;color:#fff;font-size:28px}#message{position:absolute;left:50%;bottom:25px;transform:translateX(-50%);z-index:70;padding:10px 16px;border-radius:10px;background:#000d;color:#ddd;font-size:13px;display:none;max-width:90%;text-align:center}
+</style>
+</head>
+<body>
+<div id="home"><div class="brand">
+<div class="title">LIVE TV</div><div class="sub">PREMIUM MATCH PLAYER</div>
+<div class="match">
+<div class="team"><div class="flag" id="f1">🇧🇩</div><div class="name" id="n1">BANGLADESH</div></div>
+<div class="vs">VS</div>
+<div class="team right"><div class="flag" id="f2">🇮🇳</div><div class="name" id="n2">INDIA</div></div>
+</div>
+<div class="play" id="play">▶ TAP TO PLAY</div><div class="hint">LIVE MATCH • TAP TO START</div>
+</div></div>
+<div id="playerPage"><button id="back" onclick="closePlayer()">‹</button><video id="video" controls playsinline></video><div id="message"></div></div>
+<script>
+const TEAM1_FLAG="🇧🇩",TEAM1_NAME="BANGLADESH";
+const TEAM2_FLAG="🇮🇳",TEAM2_NAME="INDIA";
+const STREAM_URL="PASTE_YOUR_AUTHORIZED_MPD_LINK_HERE";
+f1.textContent=TEAM1_FLAG;n1.textContent=TEAM1_NAME;f2.textContent=TEAM2_FLAG;n2.textContent=TEAM2_NAME;
+let player=null;
+function msg(t){message.textContent=t;message.style.display="block"}function hide(){message.style.display="none"}
+function parse(s){let p=s.split("|"),q=p.length>1?new URLSearchParams(p.slice(1).join("|")):null;return{mpd:p[0].trim(),scheme:q?q.get("drmScheme")||"":"",license:q?q.get("drmLicense")||"":""}}
+async function openPlayer(){
+ if(!STREAM_URL||STREAM_URL.includes("PASTE_YOUR")){msg("Add your authorized stream in STREAM_URL first.");return}
+ home.style.display="none";playerPage.style.display="block";hide();shaka.polyfill.installAll();
+ if(!shaka.Player.isBrowserSupported()){msg("DASH playback is not supported in this browser.");return}
+ if(player){try{await player.destroy()}catch(e){}}
+ player=new shaka.Player(video);player.addEventListener("error",e=>{console.error(e.detail);msg("Playback error. Check stream/CORS/authorized DRM settings.")});
+ try{let d=parse(STREAM_URL);if(d.scheme.toLowerCase()==="clearkey"&&d.license){let k=d.license.split(":");if(k.length<2)throw Error("Bad ClearKey");player.configure({drm:{clearKeys:{[k[0].trim()]:k[1].trim()}}});}msg("Loading stream...");await player.load(d.mpd);hide();try{await video.play()}catch(e){}}catch(e){console.error(e);msg("Stream could not be loaded.")}}
+async function closePlayer(){if(player){try{await player.destroy()}catch(e){}player=null}video.pause();video.removeAttribute("src");video.load();playerPage.style.display="none";home.style.display="flex"}
+play.onclick=openPlayer;f1.onclick=openPlayer;f2.onclick=openPlayer;
+</script>
+</body></html>
