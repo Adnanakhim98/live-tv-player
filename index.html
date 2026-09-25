@@ -8,7 +8,8 @@
       content="width=device-width,
                initial-scale=1.0,
                maximum-scale=1.0,
-               user-scalable=no">
+               user-scalable=no,
+               viewport-fit=cover">
 
 <title>LIVE TV</title>
 
@@ -28,12 +29,20 @@
 html,
 body{
     margin:0;
+    padding:0;
+
     width:100%;
     height:100%;
+
     overflow:hidden;
+
     background:#000;
     color:#fff;
-    font-family:Arial,Helvetica,sans-serif;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 }
 
 body{
@@ -46,10 +55,15 @@ body{
 ===================================================== */
 
 .home{
+    position:fixed;
+
+    inset:0;
+
     width:100%;
     height:100%;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
@@ -126,7 +140,10 @@ body{
 
     transform:rotate(-22deg);
 
-    filter:drop-shadow(0 0 7px #ff6332);
+    filter:
+        drop-shadow(
+            0 0 7px #ff6332
+        );
 }
 
 .logo:after{
@@ -146,16 +163,23 @@ body{
 
     transform:rotate(-10deg);
 
-    filter:drop-shadow(0 0 6px #ff6332);
+    filter:
+        drop-shadow(
+            0 0 6px #ff6332
+        );
 }
 
 .tv{
     position:relative;
+
     z-index:2;
 
     font-size:75px;
 
-    filter:drop-shadow(0 0 8px #55dfff);
+    filter:
+        drop-shadow(
+            0 0 8px #55dfff
+        );
 }
 
 .logo-title{
@@ -186,10 +210,12 @@ body{
     margin:42px auto 0;
 
     display:flex;
+
     align-items:center;
     justify-content:center;
 
     border:1px solid #12bde8;
+
     border-radius:35px;
 
     color:#16caff;
@@ -199,20 +225,23 @@ body{
     letter-spacing:2px;
 
     box-shadow:
-        0 0 12px rgba(0,190,240,.18);
+        0 0 12px
+        rgba(0,190,240,.18);
 
     transition:.25s;
 }
 
-.logo-area:hover .tap{
-    background:rgba(0,190,240,.12);
-
-    box-shadow:
-        0 0 25px rgba(0,190,240,.35);
-}
-
 .logo-area:active .logo{
     transform:scale(.96);
+}
+
+.logo-area:hover .tap{
+    background:
+        rgba(0,190,240,.12);
+
+    box-shadow:
+        0 0 25px
+        rgba(0,190,240,.35);
 }
 
 @keyframes fadeIn{
@@ -226,7 +255,6 @@ body{
         opacity:1;
         transform:scale(1);
     }
-
 }
 
 
@@ -240,7 +268,10 @@ body{
 
     inset:0;
 
-    z-index:100;
+    width:100vw;
+    height:100dvh;
+
+    z-index:9999;
 
     display:none;
 
@@ -253,9 +284,9 @@ body{
     transform-origin:center center;
 
     transition:
-        transform .35s ease,
-        width .35s ease,
-        height .35s ease;
+        transform .3s ease,
+        width .3s ease,
+        height .3s ease;
 }
 
 .player.open{
@@ -264,13 +295,20 @@ body{
 
 
 /* =====================================================
-   90 DEGREE MOBILE LANDSCAPE MODE
+   ROTATED FALLBACK MODE
 ===================================================== */
+
+/*
+   Used when native fullscreen/orientation
+   is unavailable.
+*/
 
 .player.rotated{
 
-    width:100vh;
-    height:100vw;
+    position:fixed;
+
+    width:100dvh;
+    height:100dvw;
 
     top:50%;
     left:50%;
@@ -286,6 +324,7 @@ body{
 
     transform-origin:center center;
 
+    overflow:hidden;
 }
 
 
@@ -297,7 +336,8 @@ video{
 
     position:absolute;
 
-    inset:0;
+    top:0;
+    left:0;
 
     width:100%;
     height:100%;
@@ -318,16 +358,18 @@ video{
 
     inset:0;
 
-    z-index:5;
+    z-index:10;
 
     display:flex;
+
     flex-direction:column;
+
     justify-content:space-between;
 
     background:
     linear-gradient(
         to bottom,
-        rgba(0,0,0,.72),
+        rgba(0,0,0,.75),
         transparent 25%,
         transparent 58%,
         rgba(0,0,0,.95)
@@ -335,7 +377,8 @@ video{
 
     opacity:1;
 
-    transition:.3s;
+    transition:
+        opacity .3s ease;
 }
 
 .controls.hide{
@@ -343,22 +386,28 @@ video{
     opacity:0;
 
     pointer-events:none;
-
 }
 
 
 /* =====================================================
-   TOP
+   TOP BAR
 ===================================================== */
 
 .top{
 
-    height:70px;
+    width:100%;
+
+    min-height:70px;
 
     display:flex;
+
     align-items:center;
 
-    padding:12px 16px;
+    padding:
+        12px
+        max(16px, env(safe-area-inset-left))
+        12px
+        max(16px, env(safe-area-inset-right));
 
     gap:10px;
 }
@@ -374,6 +423,12 @@ video{
     font-weight:bold;
 
     letter-spacing:3px;
+
+    white-space:nowrap;
+
+    overflow:hidden;
+
+    text-overflow:ellipsis;
 }
 
 .top-btn{
@@ -381,17 +436,26 @@ video{
     width:46px;
     height:46px;
 
+    flex-shrink:0;
+
     border:0;
 
     border-radius:50%;
 
-    background:rgba(0,0,0,.65);
+    background:
+        rgba(0,0,0,.65);
 
     color:#fff;
 
     font-size:25px;
 
     cursor:pointer;
+}
+
+.top-btn:active{
+
+    background:
+        rgba(255,255,255,.15);
 }
 
 
@@ -414,13 +478,14 @@ video{
     width:76px;
     height:76px;
 
-    border:2px solid white;
+    border:2px solid #fff;
 
     border-radius:50%;
 
-    background:rgba(0,0,0,.55);
+    background:
+        rgba(0,0,0,.55);
 
-    color:white;
+    color:#fff;
 
     font-size:28px;
 
@@ -436,7 +501,13 @@ video{
 
     position:relative;
 
-    padding:10px 15px 18px;
+    width:100%;
+
+    padding:
+        10px
+        max(15px, env(safe-area-inset-right))
+        max(18px, env(safe-area-inset-bottom))
+        max(15px, env(safe-area-inset-left));
 }
 
 .progress-row{
@@ -455,6 +526,8 @@ video{
 .progress{
 
     flex:1;
+
+    min-width:0;
 
     height:5px;
 
@@ -491,6 +564,11 @@ video{
     background:#fff;
 }
 
+
+/* =====================================================
+   BUTTONS
+===================================================== */
+
 .buttons{
 
     display:flex;
@@ -499,12 +577,15 @@ video{
 
     gap:4px;
 
+    width:100%;
 }
 
 .control{
 
     min-width:43px;
     height:43px;
+
+    flex-shrink:0;
 
     border:0;
 
@@ -521,46 +602,35 @@ video{
 
 .control:active{
 
-    background:rgba(255,255,255,.15);
-
+    background:
+        rgba(255,255,255,.15);
 }
 
 .volume{
 
     width:105px;
+
+    flex-shrink:1;
+
+    min-width:50px;
 }
 
 
 /* =====================================================
-   QUALITY BUTTON
+   QUALITY
 ===================================================== */
 
 .quality-btn{
 
     position:relative;
-
 }
-
-.quality-btn span{
-
-    display:block;
-
-    font-size:17px;
-
-}
-
-
-/* =====================================================
-   QUALITY MENU
-===================================================== */
 
 .quality-menu{
 
     position:absolute;
 
     right:12px;
-
-    bottom:70px;
+    bottom:75px;
 
     min-width:180px;
 
@@ -574,20 +644,22 @@ video{
 
     border-radius:12px;
 
-    background:rgba(15,15,15,.97);
+    background:
+        rgba(15,15,15,.98);
 
-    border:1px solid rgba(255,255,255,.18);
+    border:
+        1px solid
+        rgba(255,255,255,.18);
 
     box-shadow:
-        0 10px 35px rgba(0,0,0,.6);
+        0 10px 35px
+        rgba(0,0,0,.6);
 
-    z-index:30;
+    z-index:50;
 }
 
 .quality-menu.show{
-
     display:block;
-
 }
 
 .quality-title{
@@ -624,10 +696,10 @@ video{
     cursor:pointer;
 }
 
-.quality-item:hover{
+.quality-item:active{
 
-    background:rgba(255,255,255,.1);
-
+    background:
+        rgba(255,255,255,.1);
 }
 
 .quality-item.active{
@@ -659,13 +731,12 @@ video{
 
     flex-direction:column;
 
-    background:rgba(0,0,0,.7);
+    background:
+        rgba(0,0,0,.72);
 }
 
 .loading.show{
-
     display:flex;
-
 }
 
 .spinner{
@@ -679,7 +750,8 @@ video{
 
     border-radius:50%;
 
-    animation:spin .8s linear infinite;
+    animation:
+        spin .8s linear infinite;
 }
 
 .loading-text{
@@ -696,7 +768,6 @@ video{
     to{
         transform:rotate(360deg);
     }
-
 }
 
 
@@ -710,7 +781,7 @@ video{
 
     inset:0;
 
-    z-index:50;
+    z-index:100;
 
     display:none;
 
@@ -719,20 +790,23 @@ video{
 
     padding:20px;
 
-    background:rgba(0,0,0,.65);
+    background:
+        rgba(0,0,0,.72);
 }
 
 .error-box.show{
-
     display:flex;
-
 }
 
 .error-card{
 
     width:100%;
 
-    max-width:430px;
+    max-width:440px;
+
+    max-height:90vh;
+
+    overflow:auto;
 
     padding:28px 22px;
 
@@ -742,10 +816,12 @@ video{
 
     background:#111;
 
-    border:1px solid #333;
+    border:
+        1px solid #333;
 
     box-shadow:
-        0 15px 50px rgba(0,0,0,.7);
+        0 15px 50px
+        rgba(0,0,0,.7);
 }
 
 .error-icon{
@@ -775,6 +851,23 @@ video{
     word-break:break-word;
 }
 
+.error-code{
+
+    margin-top:12px;
+
+    padding:10px;
+
+    border-radius:8px;
+
+    background:#080808;
+
+    color:#12c7f4;
+
+    font-size:12px;
+
+    word-break:break-all;
+}
+
 .error-close{
 
     margin-top:22px;
@@ -796,36 +889,49 @@ video{
 
 
 /* =====================================================
+   NATIVE FULLSCREEN
+===================================================== */
+
+.player:fullscreen{
+
+    width:100vw;
+    height:100vh;
+
+    background:#000;
+}
+
+.player:-webkit-full-screen{
+
+    width:100vw;
+    height:100vh;
+
+    background:#000;
+}
+
+
+/* =====================================================
    MOBILE
 ===================================================== */
 
 @media(max-width:600px){
 
     .logo{
-
         width:250px;
         height:250px;
-
     }
 
     .tv{
-
         font-size:65px;
-
     }
 
     .logo-title{
-
         font-size:31px;
         letter-spacing:5px;
-
     }
 
     .logo-subtitle{
-
         font-size:14px;
         letter-spacing:4px;
-
     }
 
     .tap{
@@ -835,19 +941,19 @@ video{
         height:55px;
 
         font-size:14px;
-
     }
 
     .bottom{
 
-        padding:7px 8px 12px;
-
+        padding:
+            7px
+            8px
+            max(12px, env(safe-area-inset-bottom))
+            8px;
     }
 
     .buttons{
-
         gap:1px;
-
     }
 
     .control{
@@ -857,46 +963,37 @@ video{
         height:40px;
 
         font-size:16px;
-
     }
 
     .volume{
-
         width:72px;
-
     }
 
     .title{
-
         font-size:16px;
-
     }
 
     .quality-menu{
 
         right:7px;
 
-        bottom:62px;
+        bottom:65px;
 
         min-width:165px;
-
     }
 
 }
 
 
 /* =====================================================
-   SMALL LANDSCAPE
+   LANDSCAPE
 ===================================================== */
 
-@media(max-height:500px){
+@media(orientation:landscape){
 
     .top{
-
-        height:55px;
-
-        padding:6px 12px;
-
+        min-height:58px;
+        padding:7px 12px;
     }
 
     .top-btn{
@@ -905,31 +1002,74 @@ video{
         height:40px;
 
         font-size:22px;
-
     }
 
     .bottom{
 
         padding:
-            5px 10px 8px;
-
+            5px
+            12px
+            10px;
     }
 
     .control{
 
-        min-width:38px;
-
-        height:38px;
-
+        min-width:40px;
+        height:40px;
     }
 
     .center-play{
 
         width:65px;
         height:65px;
+    }
+}
 
+
+/* =====================================================
+   VERY SMALL HEIGHT
+===================================================== */
+
+@media(max-height:430px){
+
+    .top{
+
+        min-height:48px;
+
+        padding:
+            4px 10px;
     }
 
+    .top-btn{
+
+        width:36px;
+        height:36px;
+
+        font-size:20px;
+    }
+
+    .bottom{
+
+        padding:
+            3px 8px 6px;
+    }
+
+    .progress-row{
+
+        margin-bottom:5px;
+    }
+
+    .control{
+
+        min-width:35px;
+        height:35px;
+
+        font-size:15px;
+    }
+
+    .volume{
+        width:65px;
+    }
 }
 
 </style>
@@ -1016,17 +1156,18 @@ video{
             <div
                 id="errorMessage"
                 class="error-message">
-
                 MPD stream could not be loaded.
+            </div>
 
+            <div
+                id="errorCode"
+                class="error-code">
             </div>
 
             <button
                 id="errorClose"
                 class="error-close">
-
                 CLOSE
-
             </button>
 
         </div>
@@ -1046,25 +1187,19 @@ video{
             <button
                 id="backHome"
                 class="top-btn">
-
                 ←
-
             </button>
 
             <div
                 id="playerTitle"
                 class="title">
-
                 LIVE TV
-
             </div>
 
             <button
                 id="fullscreen"
                 class="top-btn">
-
-                ⛶
-
+                
             </button>
 
         </div>
@@ -1077,9 +1212,7 @@ video{
             <button
                 id="centerPlay"
                 class="center-play">
-
                 ▶
-
             </button>
 
         </div>
@@ -1088,7 +1221,6 @@ video{
         <!-- BOTTOM -->
 
         <div class="bottom">
-
 
             <div class="progress-row">
 
@@ -1113,24 +1245,17 @@ video{
 
             <div class="buttons">
 
-
                 <button
                     id="play"
                     class="control">
-
                     ▶
-
                 </button>
-
 
                 <button
                     id="mute"
                     class="control">
-
                     🔊
-
                 </button>
-
 
                 <input
                     id="volume"
@@ -1141,49 +1266,34 @@ video{
                     step=".01"
                     value="1">
 
-
                 <button
                     id="back10"
                     class="control">
-
                     ↶10
-
                 </button>
-
 
                 <button
                     id="forward10"
                     class="control">
-
                     10↷
-
                 </button>
-
 
                 <button
                     id="pip"
                     class="control">
-
                     ▣
-
                 </button>
-
 
                 <button
                     id="qualityButton"
                     class="control quality-btn">
-
                     ⚙️
-
                 </button>
-
 
                 <button
                     id="fullscreen2"
                     class="control">
-
                     ⛶
-
                 </button>
 
             </div>
@@ -1202,9 +1312,7 @@ video{
                 <button
                     class="quality-item active"
                     data-quality="auto">
-
                     Auto
-
                 </button>
 
                 <div id="qualityList"></div>
@@ -1224,16 +1332,23 @@ video{
    STREAM SETTINGS
 ===================================================== */
 
-const MPD_URL =
-"https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/m6sqanvm2m/out/v1/f6beb46c6e9a4132ad739f3ca27df6aa/cenc.mpd";
+/*
+   Use only an MPD stream you are authorized to play.
+*/
 
+const MPD_URL =
+"https://otte.cache.aiv-cdn.net/iad-nitro/live/clients/dash/enc/rhf2dwosdt/out/v1/ee550d2a68d846c797e6ce4de2e8b76d/cenc.mpd";
+
+
+/*
+   ClearKey configuration.
+*/
 
 const KID =
-"1444f4235529f183f0a5a486befe9cdb";
-
+"69a5aa835a061ce64a630d1046727e40";
 
 const KEY =
-"e5e3fec67a1bb3472a2089c8a0a2557f";
+"d02feac8a999bd06bf4059bf33411749";
 
 
 const CHANNEL_NAME =
@@ -1301,6 +1416,9 @@ document.getElementById("errorBox");
 const errorMessage =
 document.getElementById("errorMessage");
 
+const errorCode =
+document.getElementById("errorCode");
+
 
 /* =====================================================
    VARIABLES
@@ -1312,24 +1430,47 @@ let hideTimer = null;
 
 let isRotated = false;
 
-let historyAdded = false;
+let historyStateAdded = false;
+
+let nativeFullscreen = false;
 
 
 /* =====================================================
-   ERROR
+   SHOW ERROR
 ===================================================== */
 
-function showError(message){
+function showError(message, code){
 
     loading.classList.remove("show");
 
     errorMessage.textContent =
-        message;
+        message || "Unknown playback error.";
+
+    if(code){
+
+        errorCode.textContent =
+            "Shaka Error Code: " + code;
+
+        errorCode.style.display =
+            "block";
+
+    }else{
+
+        errorCode.textContent =
+            "";
+
+        errorCode.style.display =
+            "none";
+    }
 
     errorBox.classList.add("show");
 
 }
 
+
+/* =====================================================
+   CLOSE ERROR
+===================================================== */
 
 document
 .getElementById("errorClose")
@@ -1355,11 +1496,10 @@ async function initPlayer(){
     ){
 
         showError(
-            "This browser does not support MPD playback."
+            "This browser does not support DASH/MPD playback."
         );
 
         return false;
-
     }
 
 
@@ -1367,36 +1507,111 @@ async function initPlayer(){
         new shaka.Player(video);
 
 
+    /*
+       Shaka error event
+    */
+
     shakaPlayer.addEventListener(
         "error",
         function(event){
 
             console.error(
-                "Shaka Error:",
+                "SHAKA ERROR:",
                 event.detail
             );
 
-            const error =
+            const err =
                 event.detail;
 
-            let message =
-                "MPD stream could not be loaded.";
+            showError(
+                getShakaErrorText(err),
+                err && err.code
+            );
 
-            if(error){
+        }
+    );
 
-                message +=
-                    " Error code: " +
-                    error.code;
+
+    /*
+       Optional buffering event
+    */
+
+    shakaPlayer.addEventListener(
+        "buffering",
+        function(event){
+
+            if(event.buffering){
+
+                loading.classList.add(
+                    "show"
+                );
+
+            }else{
+
+                loading.classList.remove(
+                    "show"
+                );
 
             }
-
-            showError(message);
 
         }
     );
 
 
     return true;
+}
+
+
+/* =====================================================
+   SHAKA ERROR TEXT
+===================================================== */
+
+function getShakaErrorText(error){
+
+    if(!error){
+
+        return "Unknown Shaka playback error.";
+    }
+
+
+    switch(error.code){
+
+        case 1001:
+            return "Browser does not support the required media format.";
+
+        case 1002:
+            return "Media source could not be loaded.";
+
+        case 1003:
+            return "Media decoding failed.";
+
+        case 2001:
+            return "MPD manifest could not be downloaded.";
+
+        case 2002:
+            return "MPD manifest could not be parsed.";
+
+        case 4001:
+            return "DRM initialization failed.";
+
+        case 6001:
+            return "DRM system is not supported by this browser.";
+
+        case 6002:
+            return "DRM license request failed.";
+
+        case 6003:
+            return "DRM license response was invalid.";
+
+        case 6007:
+            return "The supplied DRM key could not decrypt the stream.";
+
+        default:
+            return (
+                "MPD playback failed. " +
+                "Check MPD URL, DRM configuration, CORS and stream availability."
+            );
+    }
 
 }
 
@@ -1418,6 +1633,10 @@ async function(){
     playerTitle.textContent =
         CHANNEL_NAME;
 
+    errorBox.classList.remove(
+        "show"
+    );
+
     loading.classList.add(
         "show"
     );
@@ -1431,13 +1650,13 @@ async function(){
         if(!ok){
 
             return;
-
         }
-
     }
 
 
-    /* CLEARKEY */
+    /*
+       ClearKey
+    */
 
     if(KID && KEY){
 
@@ -1455,13 +1674,12 @@ async function(){
     }
 
 
-    /* LOAD */
-
     try{
 
         await shakaPlayer.load(
             MPD_URL
         );
+
 
         loading.classList.remove(
             "show"
@@ -1478,7 +1696,8 @@ async function(){
         }catch(e){
 
             console.log(
-                "Autoplay blocked"
+                "Autoplay blocked:",
+                e
             );
 
         }
@@ -1492,12 +1711,18 @@ async function(){
     catch(error){
 
         console.error(
-            "MPD Load Error:",
+            "MPD LOAD ERROR:",
             error
         );
 
+        loading.classList.remove(
+            "show"
+        );
+
+
         showError(
-            "MPD stream could not be loaded. Check the MPD URL, DRM credentials and server CORS permissions."
+            getShakaErrorText(error),
+            error && error.code
         );
 
     }
@@ -1517,7 +1742,6 @@ function buildQualityMenu(){
     if(!shakaPlayer){
 
         return;
-
     }
 
 
@@ -1538,7 +1762,6 @@ function buildQualityMenu(){
 
                 qualities[track.height] =
                     track;
-
             }
 
         }
@@ -1574,7 +1797,6 @@ function buildQualityMenu(){
         );
 
         return;
-
     }
 
 
@@ -1592,14 +1814,18 @@ function buildQualityMenu(){
             button.textContent =
                 height + "p";
 
+
             button.onclick =
-            function(){
+            function(e){
+
+                e.stopPropagation();
 
                 selectQuality(
                     height
                 );
 
             };
+
 
             qualityList.appendChild(
                 button
@@ -1620,7 +1846,6 @@ function selectQuality(height){
     if(!shakaPlayer){
 
         return;
-
     }
 
 
@@ -1633,8 +1858,7 @@ function selectQuality(height){
             function(track){
 
                 return (
-                    track.height ===
-                    height
+                    track.height === height
                 );
 
             }
@@ -1644,7 +1868,6 @@ function selectQuality(height){
     if(!matching.length){
 
         return;
-
     }
 
 
@@ -1686,17 +1909,6 @@ function selectQuality(height){
                 "active"
             );
 
-        }
-    );
-
-
-    document
-    .querySelectorAll(
-        ".quality-item"
-    )
-    .forEach(
-        function(button){
-
             if(
                 button.textContent ===
                 height + "p"
@@ -1730,7 +1942,6 @@ function setAutoQuality(){
     if(!shakaPlayer){
 
         return;
-
     }
 
 
@@ -1787,7 +1998,13 @@ document
     '[data-quality="auto"]'
 )
 .onclick =
-setAutoQuality;
+function(e){
+
+    e.stopPropagation();
+
+    setAutoQuality();
+
+};
 
 
 /* =====================================================
@@ -1809,7 +2026,7 @@ function(e){
 
 
 /* =====================================================
-   PLAY
+   PLAY / PAUSE
 ===================================================== */
 
 function togglePlay(){
@@ -1818,7 +2035,11 @@ function togglePlay(){
 
         video.play()
         .catch(
-            ()=>{}
+            function(error){
+
+                console.log(error);
+
+            }
         );
 
     }else{
@@ -1879,7 +2100,9 @@ volume.oninput =
 function(){
 
     video.volume =
-        Number(volume.value);
+        Number(
+            volume.value
+        );
 
     video.muted =
         video.volume === 0;
@@ -1972,8 +2195,9 @@ function(){
 
         video.currentTime =
             (
-                Number(progress.value) /
-                1000
+                Number(
+                    progress.value
+                ) / 1000
             ) *
             video.duration;
 
@@ -1993,7 +2217,6 @@ function formatTime(seconds){
     ){
 
         return "00:00";
-
     }
 
 
@@ -2091,7 +2314,7 @@ function(){
 
 
 /* =====================================================
-   90 DEGREE ROTATION
+   ENTER 90° MODE
 ===================================================== */
 
 async function enterRotatedMode(){
@@ -2099,7 +2322,6 @@ async function enterRotatedMode(){
     if(isRotated){
 
         return;
-
     }
 
 
@@ -2107,25 +2329,29 @@ async function enterRotatedMode(){
 
 
     /*
-       Add browser history state.
-       Android Back button will
-       return to normal mode.
+       Add exactly ONE history state.
+       Android Back will consume this state.
     */
 
-    if(!historyAdded){
+    if(!historyStateAdded){
 
         history.pushState(
             {
-                playerLandscape:true
+                liveTvLandscape:true
             },
             "",
             "#landscape"
         );
 
-        historyAdded = true;
-
+        historyStateAdded = true;
     }
 
+
+    /*
+       First apply CSS fallback.
+       This guarantees 90° mode even
+       when native orientation APIs fail.
+    */
 
     playerBox.classList.add(
         "rotated"
@@ -2133,30 +2359,36 @@ async function enterRotatedMode(){
 
 
     /*
-       Try native landscape lock.
-       If browser doesn't support it,
-       CSS rotation still works.
+       Try native orientation lock.
     */
 
     try{
 
         if(
             screen.orientation &&
-            screen.orientation.lock
+            typeof screen.orientation.lock ===
+            "function"
         ){
 
             await screen.orientation
                 .lock("landscape")
                 .catch(
-                    ()=>{}
+                    function(){
+
+                        console.log(
+                            "Landscape lock unavailable"
+                        );
+
+                    }
                 );
 
         }
 
-    }catch(e){
+    }catch(error){
 
         console.log(
-            "Orientation lock unavailable"
+            "Orientation API unavailable:",
+            error
         );
 
     }
@@ -2168,22 +2400,25 @@ async function enterRotatedMode(){
 
 
 /* =====================================================
-   EXIT ROTATED MODE
+   EXIT 90° MODE
 ===================================================== */
 
 async function exitRotatedMode(
-    removeHistory = true
+    fromBack = false
 ){
 
     if(!isRotated){
 
         return;
-
     }
 
 
     isRotated = false;
 
+
+    /*
+       Remove CSS rotation.
+    */
 
     playerBox.classList.remove(
         "rotated"
@@ -2191,46 +2426,55 @@ async function exitRotatedMode(
 
 
     /*
-       Unlock phone orientation
+       Unlock orientation.
     */
 
     try{
 
         if(
             screen.orientation &&
-            screen.orientation.unlock
+            typeof screen.orientation.unlock ===
+            "function"
         ){
 
             screen.orientation.unlock();
 
         }
 
-    }catch(e){
+    }catch(error){
 
-        console.log(e);
+        console.log(error);
 
     }
 
 
     /*
-       Remove #landscape history
-       when requested.
+       If exiting through Android Back,
+       the browser has already consumed
+       our history state.
+
+       If exiting through button,
+       remove the extra state.
     */
 
     if(
-        removeHistory &&
-        historyAdded
+        !fromBack &&
+        historyStateAdded
     ){
 
-        historyAdded = false;
-
+        historyStateAdded = false;
 
         if(
             location.hash ===
             "#landscape"
         ){
 
-            history.back();
+            history.replaceState(
+                null,
+                "",
+                location.pathname +
+                location.search
+            );
 
         }
 
@@ -2239,6 +2483,101 @@ async function exitRotatedMode(
 
     showControls();
 
+}
+
+
+/* =====================================================
+   TRUE FULLSCREEN
+===================================================== */
+
+async function enterNativeFullscreen(){
+
+    nativeFullscreen = false;
+
+
+    try{
+
+        if(
+            document.fullscreenElement
+        ){
+
+            nativeFullscreen = true;
+
+            return true;
+        }
+
+
+        if(
+            playerBox.requestFullscreen
+        ){
+
+            await playerBox.requestFullscreen();
+
+            nativeFullscreen = true;
+
+            return true;
+        }
+
+
+        /*
+           Safari / WebKit fallback.
+        */
+
+        if(
+            playerBox.webkitRequestFullscreen
+        ){
+
+            playerBox.webkitRequestFullscreen();
+
+            nativeFullscreen = true;
+
+            return true;
+        }
+
+    }catch(error){
+
+        console.log(
+            "Native fullscreen unavailable:",
+            error
+        );
+
+    }
+
+
+    return false;
+}
+
+
+/* =====================================================
+   EXIT NATIVE FULLSCREEN
+===================================================== */
+
+async function exitNativeFullscreen(){
+
+    try{
+
+        if(
+            document.fullscreenElement
+        ){
+
+            await document.exitFullscreen();
+
+        }
+        else if(
+            document.webkitFullscreenElement
+        ){
+
+            document.webkitExitFullscreen();
+
+        }
+
+    }catch(error){
+
+        console.log(error);
+
+    }
+
+    nativeFullscreen = false;
 }
 
 
@@ -2249,53 +2588,33 @@ async function exitRotatedMode(
 async function fullscreen(){
 
     /*
-       If already rotated,
+       If already in 90° mode:
        return to normal.
     */
 
     if(isRotated){
 
-        await exitRotatedMode();
+        await exitNativeFullscreen();
+
+        await exitRotatedMode(false);
 
         return;
-
     }
 
 
     /*
-       First try browser fullscreen.
+       User clicked the button,
+       so request native fullscreen
+       while still inside the gesture.
     */
 
-    try{
-
-        if(
-            !document.fullscreenElement
-        ){
-
-            if(
-                playerBox.requestFullscreen
-            ){
-
-                await playerBox.requestFullscreen()
-                .catch(
-                    ()=>{}
-                );
-
-            }
-
-        }
-
-    }catch(e){
-
-        console.log(
-            "Fullscreen unavailable"
-        );
-
-    }
+    await enterNativeFullscreen();
 
 
     /*
-       Then rotate 90 degrees.
+       CSS rotation is still applied.
+       This is important for Android WebView
+       where orientation lock may not work.
     */
 
     await enterRotatedMode();
@@ -2307,7 +2626,6 @@ document
 .getElementById("fullscreen")
 .onclick =
 fullscreen;
-
 
 document
 .getElementById("fullscreen2")
@@ -2323,12 +2641,17 @@ document.addEventListener(
     "fullscreenchange",
     function(){
 
-        /*
-           If user exits browser
-           fullscreen manually,
-           keep player rotation until
-           Back or fullscreen button.
-        */
+        showControls();
+
+    }
+);
+
+
+/* WebKit */
+
+document.addEventListener(
+    "webkitfullscreenchange",
+    function(){
 
         showControls();
 
@@ -2337,36 +2660,33 @@ document.addEventListener(
 
 
 /* =====================================================
-   ANDROID BACK BUTTON
+   ANDROID BACK BUTTON / POPSTATE
 ===================================================== */
-
-/*
-   When #landscape exists,
-   browser back triggers popstate.
-*/
 
 window.addEventListener(
     "popstate",
-    function(){
+    async function(){
+
+        /*
+           First Back:
+           landscape -> portrait
+        */
 
         if(isRotated){
 
-            /*
-               Do NOT call history.back()
-               again here.
-            */
+            historyStateAdded = false;
 
-            historyAdded = false;
+            await exitNativeFullscreen();
 
-            exitRotatedMode(false);
+            await exitRotatedMode(true);
 
             return;
-
         }
 
+
         /*
-           If normal player is open,
-           go back to home.
+           Second Back:
+           player -> home
         */
 
         if(
@@ -2387,12 +2707,19 @@ window.addEventListener(
    CLOSE PLAYER
 ===================================================== */
 
-function closePlayer(){
+async function closePlayer(){
+
+    /*
+       If rotated, return to normal.
+    */
 
     if(isRotated){
 
-        exitRotatedMode(false);
+        historyStateAdded = false;
 
+        await exitNativeFullscreen();
+
+        await exitRotatedMode(true);
     }
 
 
@@ -2401,7 +2728,31 @@ function closePlayer(){
     );
 
 
+    errorBox.classList.remove(
+        "show"
+    );
+
+
     video.pause();
+
+
+    /*
+       Unload stream to stop network.
+    */
+
+    if(shakaPlayer){
+
+        try{
+
+            await shakaPlayer.unload();
+
+        }catch(error){
+
+            console.log(error);
+
+        }
+
+    }
 
 
     playerBox.classList.remove(
@@ -2422,21 +2773,25 @@ function closePlayer(){
 document
 .getElementById("backHome")
 .onclick =
-function(){
+async function(){
 
     /*
-       If rotated, first return
-       to normal mode.
+       If rotated:
+       first return to portrait.
     */
 
     if(isRotated){
 
-        exitRotatedMode(false);
+        historyStateAdded = false;
+
+        await exitNativeFullscreen();
+
+        await exitRotatedMode(true);
 
     }
 
 
-    closePlayer();
+    await closePlayer();
 
 };
 
@@ -2459,22 +2814,22 @@ async function(){
             await document
                 .exitPictureInPicture();
 
-        }else{
+        }
+        else if(
+            document.pictureInPictureEnabled
+        ){
 
-            if(
-                document.pictureInPictureEnabled
-            ){
-
-                await video
-                    .requestPictureInPicture();
-
-            }
+            await video
+                .requestPictureInPicture();
 
         }
 
     }catch(error){
 
-        console.log(error);
+        console.log(
+            "PiP unavailable:",
+            error
+        );
 
     }
 
@@ -2482,7 +2837,7 @@ async function(){
 
 
 /* =====================================================
-   AUTO HIDE
+   AUTO HIDE CONTROLS
 ===================================================== */
 
 function showControls(){
@@ -2522,23 +2877,35 @@ function showControls(){
 
 
 /* =====================================================
-   TOUCH / MOUSE
+   TOUCH
 ===================================================== */
 
 playerBox.addEventListener(
-    "mousemove",
-    showControls
-);
-
-
-playerBox.addEventListener(
     "touchstart",
-    showControls,
+    function(){
+
+        showControls();
+
+    },
     {
         passive:true
     }
 );
 
+
+playerBox.addEventListener(
+    "mousemove",
+    function(){
+
+        showControls();
+
+    }
+);
+
+
+/* =====================================================
+   VIDEO CLICK
+===================================================== */
 
 video.addEventListener(
     "click",
@@ -2556,7 +2923,7 @@ video.addEventListener(
 
 document.addEventListener(
     "keydown",
-    function(e){
+    async function(e){
 
         if(
             !playerBox.classList.contains(
@@ -2565,9 +2932,12 @@ document.addEventListener(
         ){
 
             return;
-
         }
 
+
+        /*
+           Space
+        */
 
         if(e.code === "Space"){
 
@@ -2578,18 +2948,30 @@ document.addEventListener(
         }
 
 
+        /*
+           Escape
+        */
+
         if(e.key === "Escape"){
 
             if(isRotated){
 
-                exitRotatedMode();
+                await exitNativeFullscreen();
+
+                await exitRotatedMode(false);
 
             }
 
         }
 
 
-        if(e.key === "ArrowLeft"){
+        /*
+           Left
+        */
+
+        if(
+            e.key === "ArrowLeft"
+        ){
 
             if(
                 Number.isFinite(
@@ -2608,7 +2990,13 @@ document.addEventListener(
         }
 
 
-        if(e.key === "ArrowRight"){
+        /*
+           Right
+        */
+
+        if(
+            e.key === "ArrowRight"
+        ){
 
             if(
                 Number.isFinite(
@@ -2663,6 +3051,14 @@ window.addEventListener(
 
         home.style.display =
             "flex";
+
+        playerBox.classList.remove(
+            "rotated"
+        );
+
+        isRotated = false;
+
+        historyStateAdded = false;
 
     }
 );
