@@ -13,13 +13,13 @@
 
 <title>LIVE TV</title>
 
-<script src="https://cdn.jsdelivr.net/npm/shaka-player@4.16.3/dist/shaka-player.compiled.js"></script>
+<!--
+    Updated Shaka Player
+    4.16.3 -> 4.16.50
+-->
+<script src="https://cdn.jsdelivr.net/npm/shaka-player@4.16.50/dist/shaka-player.compiled.js"></script>
 
 <style>
-
-/* =====================================================
-   BASIC
-===================================================== */
 
 *{
     box-sizing:border-box;
@@ -56,14 +56,12 @@ body{
 
 .home{
     position:fixed;
-
     inset:0;
 
     width:100%;
     height:100%;
 
     display:flex;
-
     align-items:center;
     justify-content:center;
 
@@ -127,7 +125,6 @@ body{
     content:"";
 
     position:absolute;
-
     inset:-12px;
 
     border:8px solid transparent;
@@ -141,9 +138,7 @@ body{
     transform:rotate(-22deg);
 
     filter:
-        drop-shadow(
-            0 0 7px #ff6332
-        );
+        drop-shadow(0 0 7px #ff6332);
 }
 
 .logo:after{
@@ -164,22 +159,17 @@ body{
     transform:rotate(-10deg);
 
     filter:
-        drop-shadow(
-            0 0 6px #ff6332
-        );
+        drop-shadow(0 0 6px #ff6332);
 }
 
 .tv{
     position:relative;
-
     z-index:2;
 
     font-size:75px;
 
     filter:
-        drop-shadow(
-            0 0 8px #55dfff
-        );
+        drop-shadow(0 0 8px #55dfff);
 }
 
 .logo-title{
@@ -210,23 +200,19 @@ body{
     margin:42px auto 0;
 
     display:flex;
-
     align-items:center;
     justify-content:center;
 
     border:1px solid #12bde8;
-
     border-radius:35px;
 
     color:#16caff;
 
     font-size:16px;
-
     letter-spacing:2px;
 
     box-shadow:
-        0 0 12px
-        rgba(0,190,240,.18);
+        0 0 12px rgba(0,190,240,.18);
 
     transition:.25s;
 }
@@ -240,8 +226,7 @@ body{
         rgba(0,190,240,.12);
 
     box-shadow:
-        0 0 25px
-        rgba(0,190,240,.35);
+        0 0 25px rgba(0,190,240,.35);
 }
 
 @keyframes fadeIn{
@@ -263,7 +248,6 @@ body{
 ===================================================== */
 
 .player{
-
     position:fixed;
 
     inset:0;
@@ -278,15 +262,6 @@ body{
     background:#000;
 
     overflow:hidden;
-
-    transform:none;
-
-    transform-origin:center center;
-
-    transition:
-        transform .3s ease,
-        width .3s ease,
-        height .3s ease;
 }
 
 .player.open{
@@ -295,13 +270,8 @@ body{
 
 
 /* =====================================================
-   ROTATED FALLBACK MODE
+   ROTATED MODE
 ===================================================== */
-
-/*
-   Used when native fullscreen/orientation
-   is unavailable.
-*/
 
 .player.rotated{
 
@@ -369,7 +339,7 @@ video{
     background:
     linear-gradient(
         to bottom,
-        rgba(0,0,0,.75),
+        rgba(0,0,0,.78),
         transparent 25%,
         transparent 58%,
         rgba(0,0,0,.95)
@@ -377,8 +347,7 @@ video{
 
     opacity:1;
 
-    transition:
-        opacity .3s ease;
+    transition:opacity .3s ease;
 }
 
 .controls.hide{
@@ -390,7 +359,7 @@ video{
 
 
 /* =====================================================
-   TOP BAR
+   TOP
 ===================================================== */
 
 .top{
@@ -400,14 +369,13 @@ video{
     min-height:70px;
 
     display:flex;
-
     align-items:center;
 
     padding:
         12px
-        max(16px, env(safe-area-inset-left))
+        max(16px,env(safe-area-inset-left))
         12px
-        max(16px, env(safe-area-inset-right));
+        max(16px,env(safe-area-inset-right));
 
     gap:10px;
 }
@@ -419,7 +387,6 @@ video{
     text-align:center;
 
     font-size:18px;
-
     font-weight:bold;
 
     letter-spacing:3px;
@@ -427,7 +394,6 @@ video{
     white-space:nowrap;
 
     overflow:hidden;
-
     text-overflow:ellipsis;
 }
 
@@ -439,7 +405,6 @@ video{
     flex-shrink:0;
 
     border:0;
-
     border-radius:50%;
 
     background:
@@ -448,12 +413,9 @@ video{
     color:#fff;
 
     font-size:25px;
-
-    cursor:pointer;
 }
 
 .top-btn:active{
-
     background:
         rgba(255,255,255,.15);
 }
@@ -468,7 +430,6 @@ video{
     flex:1;
 
     display:flex;
-
     align-items:center;
     justify-content:center;
 }
@@ -479,7 +440,6 @@ video{
     height:76px;
 
     border:2px solid #fff;
-
     border-radius:50%;
 
     background:
@@ -488,8 +448,6 @@ video{
     color:#fff;
 
     font-size:28px;
-
-    cursor:pointer;
 }
 
 
@@ -505,15 +463,14 @@ video{
 
     padding:
         10px
-        max(15px, env(safe-area-inset-right))
-        max(18px, env(safe-area-inset-bottom))
-        max(15px, env(safe-area-inset-left));
+        max(15px,env(safe-area-inset-right))
+        max(18px,env(safe-area-inset-bottom))
+        max(15px,env(safe-area-inset-left));
 }
 
 .progress-row{
 
     display:flex;
-
     align-items:center;
 
     gap:10px;
@@ -572,7 +529,6 @@ video{
 .buttons{
 
     display:flex;
-
     align-items:center;
 
     gap:4px;
@@ -588,7 +544,6 @@ video{
     flex-shrink:0;
 
     border:0;
-
     border-radius:8px;
 
     background:transparent;
@@ -596,8 +551,6 @@ video{
     color:#fff;
 
     font-size:19px;
-
-    cursor:pointer;
 }
 
 .control:active{
@@ -619,11 +572,6 @@ video{
 /* =====================================================
    QUALITY
 ===================================================== */
-
-.quality-btn{
-
-    position:relative;
-}
 
 .quality-menu{
 
@@ -692,12 +640,9 @@ video{
     text-align:left;
 
     font-size:14px;
-
-    cursor:pointer;
 }
 
 .quality-item:active{
-
     background:
         rgba(255,255,255,.1);
 }
@@ -761,6 +706,10 @@ video{
     color:#ddd;
 
     font-size:14px;
+
+    text-align:center;
+
+    padding:0 20px;
 }
 
 @keyframes spin{
@@ -791,7 +740,7 @@ video{
     padding:20px;
 
     background:
-        rgba(0,0,0,.72);
+        rgba(0,0,0,.82);
 }
 
 .error-box.show{
@@ -802,7 +751,7 @@ video{
 
     width:100%;
 
-    max-width:440px;
+    max-width:460px;
 
     max-height:90vh;
 
@@ -820,8 +769,7 @@ video{
         1px solid #333;
 
     box-shadow:
-        0 15px 50px
-        rgba(0,0,0,.7);
+        0 15px 50px rgba(0,0,0,.7);
 }
 
 .error-icon{
@@ -868,28 +816,61 @@ video{
     word-break:break-all;
 }
 
-.error-close{
+.error-details{
+
+    margin-top:10px;
+
+    color:#777;
+
+    font-size:11px;
+
+    line-height:1.5;
+
+    word-break:break-all;
+}
+
+.error-buttons{
+
+    display:flex;
+
+    justify-content:center;
+
+    gap:10px;
 
     margin-top:22px;
+}
 
-    padding:12px 28px;
+.error-close,
+.error-retry{
+
+    padding:12px 24px;
 
     border:0;
 
     border-radius:30px;
-
-    background:#12c7f4;
-
-    color:#001018;
 
     font-size:15px;
 
     font-weight:bold;
 }
 
+.error-close{
+
+    background:#333;
+
+    color:#fff;
+}
+
+.error-retry{
+
+    background:#12c7f4;
+
+    color:#001018;
+}
+
 
 /* =====================================================
-   NATIVE FULLSCREEN
+   FULLSCREEN
 ===================================================== */
 
 .player:fullscreen{
@@ -916,6 +897,7 @@ video{
 @media(max-width:600px){
 
     .logo{
+
         width:250px;
         height:250px;
     }
@@ -925,11 +907,13 @@ video{
     }
 
     .logo-title{
+
         font-size:31px;
         letter-spacing:5px;
     }
 
     .logo-subtitle{
+
         font-size:14px;
         letter-spacing:4px;
     }
@@ -948,7 +932,7 @@ video{
         padding:
             7px
             8px
-            max(12px, env(safe-area-inset-bottom))
+            max(12px,env(safe-area-inset-bottom))
             8px;
     }
 
@@ -992,7 +976,9 @@ video{
 @media(orientation:landscape){
 
     .top{
+
         min-height:58px;
+
         padding:7px 12px;
     }
 
@@ -1027,7 +1013,7 @@ video{
 
 
 /* =====================================================
-   VERY SMALL HEIGHT
+   SMALL HEIGHT
 ===================================================== */
 
 @media(max-height:430px){
@@ -1036,8 +1022,7 @@ video{
 
         min-height:48px;
 
-        padding:
-            4px 10px;
+        padding:4px 10px;
     }
 
     .top-btn{
@@ -1073,8 +1058,8 @@ video{
 }
 
 </style>
-
 </head>
+
 
 <body>
 
@@ -1132,8 +1117,8 @@ video{
 
         <div class="spinner"></div>
 
-        <div class="loading-text">
-            Loading stream...
+        <div id="loadingText" class="loading-text">
+            Checking stream compatibility...
         </div>
 
     </div>
@@ -1156,7 +1141,7 @@ video{
             <div
                 id="errorMessage"
                 class="error-message">
-                MPD stream could not be loaded.
+                Unable to play this stream.
             </div>
 
             <div
@@ -1164,11 +1149,26 @@ video{
                 class="error-code">
             </div>
 
-            <button
-                id="errorClose"
-                class="error-close">
-                CLOSE
-            </button>
+            <div
+                id="errorDetails"
+                class="error-details">
+            </div>
+
+            <div class="error-buttons">
+
+                <button
+                    id="errorRetry"
+                    class="error-retry">
+                    RETRY
+                </button>
+
+                <button
+                    id="errorClose"
+                    class="error-close">
+                    CLOSE
+                </button>
+
+            </div>
 
         </div>
 
@@ -1199,7 +1199,7 @@ video{
             <button
                 id="fullscreen"
                 class="top-btn">
-                
+                ⛶
             </button>
 
         </div>
@@ -1225,7 +1225,7 @@ video{
             <div class="progress-row">
 
                 <span id="current">
-                    00:00
+                    LIVE
                 </span>
 
                 <input
@@ -1286,7 +1286,7 @@ video{
 
                 <button
                     id="qualityButton"
-                    class="control quality-btn">
+                    class="control">
                     ⚙️
                 </button>
 
@@ -1299,7 +1299,7 @@ video{
             </div>
 
 
-            <!-- QUALITY MENU -->
+            <!-- QUALITY -->
 
             <div
                 id="qualityMenu"
@@ -1329,11 +1329,12 @@ video{
 <script>
 
 /* =====================================================
-   STREAM SETTINGS
+   STREAM CONFIG
 ===================================================== */
 
 /*
-   Use only an MPD stream you are authorized to play.
+   IMPORTANT:
+   Use only a stream you are authorized to play.
 */
 
 const MPD_URL =
@@ -1341,7 +1342,7 @@ const MPD_URL =
 
 
 /*
-   ClearKey configuration.
+   ClearKey
 */
 
 const KID =
@@ -1376,6 +1377,9 @@ document.getElementById("controls");
 
 const loading =
 document.getElementById("loading");
+
+const loadingText =
+document.getElementById("loadingText");
 
 const playerTitle =
 document.getElementById("playerTitle");
@@ -1419,6 +1423,9 @@ document.getElementById("errorMessage");
 const errorCode =
 document.getElementById("errorCode");
 
+const errorDetails =
+document.getElementById("errorDetails");
+
 
 /* =====================================================
    VARIABLES
@@ -1434,22 +1441,119 @@ let historyStateAdded = false;
 
 let nativeFullscreen = false;
 
+let loadingStream = false;
+
 
 /* =====================================================
-   SHOW ERROR
+   SHAKA SUPPORT CHECK
 ===================================================== */
 
-function showError(message, code){
+function checkBrowserSupport(){
 
-    loading.classList.remove("show");
+    /*
+       Basic browser support.
+    */
+
+    if(
+        !window.MediaSource
+    ){
+
+        return {
+            ok:false,
+            message:
+            "MediaSource Extensions are not available in this browser."
+        };
+
+    }
+
+
+    /*
+       Encrypted Media Extension.
+    */
+
+    if(
+        !navigator.requestMediaKeySystemAccess
+    ){
+
+        return {
+            ok:false,
+            message:
+            "Encrypted Media Extensions (EME) are not available. DRM playback cannot start."
+        };
+
+    }
+
+
+    if(
+        !shaka.Player.isBrowserSupported()
+    ){
+
+        return {
+            ok:false,
+            message:
+            "This browser does not support Shaka DASH playback."
+        };
+
+    }
+
+
+    return {
+        ok:true
+    };
+
+}
+
+
+/* =====================================================
+   LOADING MESSAGE
+===================================================== */
+
+function setLoading(text){
+
+    loadingText.textContent =
+        text || "Loading stream...";
+
+    loading.classList.add(
+        "show"
+    );
+
+}
+
+
+/* =====================================================
+   HIDE LOADING
+===================================================== */
+
+function hideLoading(){
+
+    loading.classList.remove(
+        "show"
+    );
+
+}
+
+
+/* =====================================================
+   ERROR
+===================================================== */
+
+function showError(
+    message,
+    code,
+    details
+){
+
+    hideLoading();
 
     errorMessage.textContent =
-        message || "Unknown playback error.";
+        message ||
+        "Unknown playback error.";
 
     if(code){
 
         errorCode.textContent =
-            "Shaka Error Code: " + code;
+            "Shaka Error Code: " +
+            code;
 
         errorCode.style.display =
             "block";
@@ -1463,7 +1567,14 @@ function showError(message, code){
             "none";
     }
 
-    errorBox.classList.add("show");
+
+    errorDetails.textContent =
+        details || "";
+
+
+    errorBox.classList.add(
+        "show"
+    );
 
 }
 
@@ -1477,9 +1588,136 @@ document
 .onclick =
 function(){
 
-    errorBox.classList.remove("show");
+    errorBox.classList.remove(
+        "show"
+    );
 
 };
+
+
+/* =====================================================
+   ERROR RETRY
+===================================================== */
+
+document
+.getElementById("errorRetry")
+.onclick =
+async function(){
+
+    errorBox.classList.remove(
+        "show"
+    );
+
+    await loadStream();
+
+};
+
+
+/* =====================================================
+   ERROR TEXT
+===================================================== */
+
+function getShakaErrorText(error){
+
+    if(!error){
+
+        return "Unknown playback error.";
+    }
+
+
+    const code =
+        Number(error.code);
+
+
+    switch(code){
+
+        case 1001:
+
+            return (
+                "The browser could not find a playable media format in the MPD. " +
+                "This is commonly caused by an unsupported video/audio codec, " +
+                "unsupported encrypted media configuration, or an incompatible stream variant."
+            );
+
+
+        case 1002:
+
+            return (
+                "The media source operation failed. " +
+                "The browser could not create or use the required MediaSource buffer."
+            );
+
+
+        case 1003:
+
+            return (
+                "The browser failed to decode the media. " +
+                "Try a browser-compatible H.264/AAC stream."
+            );
+
+
+        case 2001:
+
+            return (
+                "The MPD manifest could not be downloaded. " +
+                "Check the MPD URL and CORS/server availability."
+            );
+
+
+        case 2002:
+
+            return (
+                "The MPD manifest was downloaded but could not be parsed."
+            );
+
+
+        case 4001:
+
+            return (
+                "DRM initialization failed. " +
+                "Check the ClearKey configuration and browser DRM support."
+            );
+
+
+        case 6001:
+
+            return (
+                "The required DRM system is not supported by this browser."
+            );
+
+
+        case 6002:
+
+            return (
+                "The DRM license request failed."
+            );
+
+
+        case 6003:
+
+            return (
+                "The DRM license response was invalid."
+            );
+
+
+        case 6007:
+
+            return (
+                "The supplied ClearKey could not decrypt the stream. " +
+                "Check the KID and KEY."
+            );
+
+
+        default:
+
+            return (
+                "MPD playback failed. " +
+                "Check the MPD, codec, DRM, CORS and stream availability."
+            );
+
+    }
+
+}
 
 
 /* =====================================================
@@ -1488,44 +1726,60 @@ function(){
 
 async function initPlayer(){
 
+    /*
+       Install Shaka polyfills.
+    */
+
     shaka.polyfill.installAll();
 
 
-    if(
-        !shaka.Player.isBrowserSupported()
-    ){
+    const support =
+        checkBrowserSupport();
+
+
+    if(!support.ok){
 
         showError(
-            "This browser does not support DASH/MPD playback."
+            support.message
         );
 
         return false;
     }
 
 
+    /*
+       Create player.
+    */
+
     shakaPlayer =
         new shaka.Player(video);
 
 
     /*
-       Shaka error event
+       Error event.
     */
 
     shakaPlayer.addEventListener(
         "error",
         function(event){
 
-            console.error(
-                "SHAKA ERROR:",
-                event.detail
-            );
-
             const err =
                 event.detail;
 
+            console.error(
+                "SHAKA ERROR:",
+                err
+            );
+
+
             showError(
                 getShakaErrorText(err),
-                err && err.code
+                err && err.code,
+                err && err.message
+                    ?
+                    err.message
+                    :
+                    ""
             );
 
         }
@@ -1533,7 +1787,7 @@ async function initPlayer(){
 
 
     /*
-       Optional buffering event
+       Buffering.
     */
 
     shakaPlayer.addEventListener(
@@ -1542,15 +1796,13 @@ async function initPlayer(){
 
             if(event.buffering){
 
-                loading.classList.add(
-                    "show"
+                setLoading(
+                    "Buffering..."
                 );
 
             }else{
 
-                loading.classList.remove(
-                    "show"
-                );
+                hideLoading();
 
             }
 
@@ -1558,89 +1810,186 @@ async function initPlayer(){
     );
 
 
-    return true;
-}
+    /*
+       Adaptation.
+    */
 
+    shakaPlayer.addEventListener(
+        "adaptation",
+        function(){
 
-/* =====================================================
-   SHAKA ERROR TEXT
-===================================================== */
+            buildQualityMenu();
 
-function getShakaErrorText(error){
-
-    if(!error){
-
-        return "Unknown Shaka playback error.";
-    }
-
-
-    switch(error.code){
-
-        case 1001:
-            return "Browser does not support the required media format.";
-
-        case 1002:
-            return "Media source could not be loaded.";
-
-        case 1003:
-            return "Media decoding failed.";
-
-        case 2001:
-            return "MPD manifest could not be downloaded.";
-
-        case 2002:
-            return "MPD manifest could not be parsed.";
-
-        case 4001:
-            return "DRM initialization failed.";
-
-        case 6001:
-            return "DRM system is not supported by this browser.";
-
-        case 6002:
-            return "DRM license request failed.";
-
-        case 6003:
-            return "DRM license response was invalid.";
-
-        case 6007:
-            return "The supplied DRM key could not decrypt the stream.";
-
-        default:
-            return (
-                "MPD playback failed. " +
-                "Check MPD URL, DRM configuration, CORS and stream availability."
-            );
-    }
-
-}
-
-
-/* =====================================================
-   OPEN PLAYER
-===================================================== */
-
-logoArea.onclick =
-async function(){
-
-    home.style.display =
-        "none";
-
-    playerBox.classList.add(
-        "open"
+        }
     );
 
-    playerTitle.textContent =
-        CHANNEL_NAME;
+
+    /*
+       Configure network retries.
+    */
+
+    shakaPlayer.configure({
+
+        manifest:{
+
+            retryParameters:{
+
+                maxAttempts:4,
+
+                baseDelay:500,
+
+                backoffFactor:1.5,
+
+                fuzzFactor:.2,
+
+                timeout:15000
+
+            }
+
+        },
+
+        streaming:{
+
+            retryParameters:{
+
+                maxAttempts:4,
+
+                baseDelay:500,
+
+                backoffFactor:1.5,
+
+                fuzzFactor:.2,
+
+                timeout:15000
+
+            },
+
+            rebufferingGoal:2,
+
+            bufferingGoal:10,
+
+            bufferBehind:30
+
+        },
+
+        drm:{
+
+            retryParameters:{
+
+                maxAttempts:3,
+
+                baseDelay:500,
+
+                backoffFactor:1.5,
+
+                fuzzFactor:.2,
+
+                timeout:10000
+
+            }
+
+        }
+
+    });
+
+
+    return true;
+
+}
+
+
+/* =====================================================
+   CLEARKEY CONFIG
+===================================================== */
+
+function configureClearKey(){
+
+    if(
+        !KID ||
+        !KEY
+    ){
+
+        return;
+    }
+
+
+    /*
+       Shaka expects:
+       key ID -> content key
+       both hexadecimal.
+    */
+
+    shakaPlayer.configure({
+
+        drm:{
+
+            clearKeys:{
+
+                [KID
+                    .replace(
+                        /[^a-fA-F0-9]/g,
+                        ""
+                    )
+                    .toLowerCase()
+                ]:
+
+                KEY
+                    .replace(
+                        /[^a-fA-F0-9]/g,
+                        ""
+                    )
+                    .toLowerCase()
+
+            }
+
+        }
+
+    });
+
+}
+
+
+/* =====================================================
+   LOAD STREAM
+===================================================== */
+
+async function loadStream(){
+
+    if(loadingStream){
+
+        return;
+    }
+
+
+    loadingStream = true;
+
 
     errorBox.classList.remove(
         "show"
     );
 
-    loading.classList.add(
-        "show"
+
+    playerBox.classList.add(
+        "open"
     );
 
+
+    playerTitle.textContent =
+        CHANNEL_NAME;
+
+
+    home.style.display =
+        "none";
+
+
+    setLoading(
+        "Checking browser compatibility..."
+    );
+
+
+    /*
+       Create Shaka once.
+    */
 
     if(!shakaPlayer){
 
@@ -1649,56 +1998,184 @@ async function(){
 
         if(!ok){
 
+            loadingStream = false;
+
             return;
         }
-    }
-
-
-    /*
-       ClearKey
-    */
-
-    if(KID && KEY){
-
-        shakaPlayer.configure({
-
-            drm:{
-                clearKeys:{
-                    [KID.toLowerCase()]:
-                        KEY.toLowerCase()
-                }
-            }
-
-        });
 
     }
 
 
     try{
 
+        /*
+           Stop previous media.
+        */
+
+        try{
+
+            await shakaPlayer.unload();
+
+        }catch(e){
+
+            console.log(
+                "Unload:",
+                e
+            );
+
+        }
+
+
+        video.removeAttribute(
+            "src"
+        );
+
+        video.load();
+
+
+        /*
+           Configure ClearKey BEFORE load.
+        */
+
+        configureClearKey();
+
+
+        setLoading(
+            "Loading MPD manifest..."
+        );
+
+
+        /*
+           Load MPD.
+        */
+
         await shakaPlayer.load(
             MPD_URL
         );
 
 
-        loading.classList.remove(
-            "show"
+        /*
+           Manifest successfully loaded.
+        */
+
+        console.log(
+            "MPD loaded successfully"
+        );
+
+
+        const manifest =
+            shakaPlayer.getManifest();
+
+
+        /*
+           Get variants.
+        */
+
+        const tracks =
+            shakaPlayer.getVariantTracks();
+
+
+        console.log(
+            "Variant tracks:",
+            tracks
+        );
+
+
+        if(
+            !tracks ||
+            tracks.length === 0
+        ){
+
+            throw new Error(
+                "No playable video/audio variants were found in the MPD."
+            );
+
+        }
+
+
+        /*
+           Check active tracks.
+        */
+
+        const playable =
+            tracks.filter(
+                function(track){
+
+                    return (
+                        track.video ||
+                        track.audio
+                    );
+
+                }
+            );
+
+
+        if(
+            playable.length === 0
+        ){
+
+            throw new Error(
+                "The MPD contains no playable media variants for this browser."
+            );
+
+        }
+
+
+        /*
+           Show useful diagnostics.
+        */
+
+        console.log(
+            "Playable variants:",
+            playable.map(
+                function(track){
+
+                    return {
+
+                        id:track.id,
+
+                        width:track.width,
+
+                        height:track.height,
+
+                        bandwidth:track.bandwidth,
+
+                        videoCodec:track.videoCodec,
+
+                        audioCodec:track.audioCodec
+
+                    };
+
+                }
+            )
         );
 
 
         buildQualityMenu();
 
 
+        hideLoading();
+
+
+        /*
+           Start playback.
+        */
+
         try{
 
             await video.play();
 
-        }catch(e){
+        }catch(playError){
 
             console.log(
                 "Autoplay blocked:",
-                e
+                playError
             );
+
+            /*
+               Don't treat autoplay block as
+               a stream error.
+            */
 
         }
 
@@ -1711,21 +2188,70 @@ async function(){
     catch(error){
 
         console.error(
-            "MPD LOAD ERROR:",
+            "LOAD ERROR:",
             error
         );
 
-        loading.classList.remove(
-            "show"
-        );
+
+        let message;
+
+
+        /*
+           Shaka Error
+        */
+
+        if(
+            error &&
+            typeof error.code !==
+            "undefined"
+        ){
+
+            message =
+                getShakaErrorText(
+                    error
+                );
+
+        }else{
+
+            message =
+                error &&
+                error.message
+                    ?
+                    error.message
+                    :
+                    "Unable to load the MPD stream.";
+
+        }
 
 
         showError(
-            getShakaErrorText(error),
-            error && error.code
+            message,
+            error && error.code,
+            error && error.message
+                ?
+                error.message
+                :
+                ""
         );
 
     }
+    finally{
+
+        loadingStream = false;
+
+    }
+
+}
+
+
+/* =====================================================
+   LOGO CLICK
+===================================================== */
+
+logoArea.onclick =
+async function(){
+
+    await loadStream();
 
 };
 
@@ -1739,14 +2265,26 @@ function buildQualityMenu(){
     qualityList.innerHTML =
         "";
 
+
     if(!shakaPlayer){
 
         return;
     }
 
 
-    const tracks =
-        shakaPlayer.getVariantTracks();
+    let tracks;
+
+
+    try{
+
+        tracks =
+            shakaPlayer.getVariantTracks();
+
+    }catch(e){
+
+        return;
+
+    }
 
 
     const qualities = {};
@@ -1762,6 +2300,7 @@ function buildQualityMenu(){
 
                 qualities[track.height] =
                     track;
+
             }
 
         }
@@ -1772,7 +2311,11 @@ function buildQualityMenu(){
         Object.keys(qualities)
         .map(Number)
         .sort(
-            (a,b)=>b-a
+            function(a,b){
+
+                return b-a;
+
+            }
         );
 
 
@@ -1797,6 +2340,7 @@ function buildQualityMenu(){
         );
 
         return;
+
     }
 
 
@@ -1883,19 +2427,31 @@ function selectQuality(height){
     );
 
 
-    shakaPlayer.selectVariantTrack(
-        matching[0],
-        true
-    );
+    try{
+
+        shakaPlayer.selectVariantTrack(
+            matching[0],
+            true
+        );
 
 
-    shakaPlayer.configure({
+        shakaPlayer.configure({
 
-        abr:{
-            enabled:false
-        }
+            abr:{
+                enabled:false
+            }
 
-    });
+        });
+
+    }catch(error){
+
+        console.error(
+            error
+        );
+
+        return;
+
+    }
 
 
     document
@@ -1927,6 +2483,7 @@ function selectQuality(height){
     qualityMenu.classList.remove(
         "show"
     );
+
 
     showControls();
 
@@ -1988,6 +2545,7 @@ function setAutoQuality(){
         "show"
     );
 
+
     showControls();
 
 }
@@ -2037,7 +2595,10 @@ function togglePlay(){
         .catch(
             function(error){
 
-                console.log(error);
+                console.log(
+                    "Play:",
+                    error
+                );
 
             }
         );
@@ -2136,7 +2697,7 @@ function updateVolumeIcon(){
 
 
 /* =====================================================
-   PROGRESS
+   LIVE PROGRESS
 ===================================================== */
 
 video.addEventListener(
@@ -2146,7 +2707,8 @@ video.addEventListener(
         if(
             Number.isFinite(
                 video.duration
-            )
+            ) &&
+            video.duration > 0
         ){
 
             current.textContent =
@@ -2160,15 +2722,11 @@ video.addEventListener(
                 );
 
 
-            if(video.duration > 0){
-
-                progress.value =
-                    (
-                        video.currentTime /
-                        video.duration
-                    ) * 1000;
-
-            }
+            progress.value =
+                (
+                    video.currentTime /
+                    video.duration
+                ) * 1000;
 
         }else{
 
@@ -2178,11 +2736,18 @@ video.addEventListener(
             duration.textContent =
                 "LIVE";
 
+            progress.value =
+                1000;
+
         }
 
     }
 );
 
+
+/* =====================================================
+   SEEK
+===================================================== */
 
 progress.oninput =
 function(){
@@ -2190,7 +2755,8 @@ function(){
     if(
         Number.isFinite(
             video.duration
-        )
+        ) &&
+        video.duration > 0
     ){
 
         video.currentTime =
@@ -2217,6 +2783,7 @@ function formatTime(seconds){
     ){
 
         return "00:00";
+
     }
 
 
@@ -2266,7 +2833,7 @@ function formatTime(seconds){
 
 
 /* =====================================================
-   SEEK
+   SEEK BUTTONS
 ===================================================== */
 
 document
@@ -2314,7 +2881,7 @@ function(){
 
 
 /* =====================================================
-   ENTER 90° MODE
+   ROTATED MODE
 ===================================================== */
 
 async function enterRotatedMode(){
@@ -2328,11 +2895,6 @@ async function enterRotatedMode(){
     isRotated = true;
 
 
-    /*
-       Add exactly ONE history state.
-       Android Back will consume this state.
-    */
-
     if(!historyStateAdded){
 
         history.pushState(
@@ -2344,23 +2906,14 @@ async function enterRotatedMode(){
         );
 
         historyStateAdded = true;
+
     }
 
-
-    /*
-       First apply CSS fallback.
-       This guarantees 90° mode even
-       when native orientation APIs fail.
-    */
 
     playerBox.classList.add(
         "rotated"
     );
 
-
-    /*
-       Try native orientation lock.
-    */
 
     try{
 
@@ -2373,10 +2926,11 @@ async function enterRotatedMode(){
             await screen.orientation
                 .lock("landscape")
                 .catch(
-                    function(){
+                    function(error){
 
                         console.log(
-                            "Landscape lock unavailable"
+                            "Orientation lock unavailable:",
+                            error
                         );
 
                     }
@@ -2387,7 +2941,6 @@ async function enterRotatedMode(){
     }catch(error){
 
         console.log(
-            "Orientation API unavailable:",
             error
         );
 
@@ -2400,11 +2953,11 @@ async function enterRotatedMode(){
 
 
 /* =====================================================
-   EXIT 90° MODE
+   EXIT ROTATED
 ===================================================== */
 
 async function exitRotatedMode(
-    fromBack = false
+    fromBack=false
 ){
 
     if(!isRotated){
@@ -2416,18 +2969,10 @@ async function exitRotatedMode(
     isRotated = false;
 
 
-    /*
-       Remove CSS rotation.
-    */
-
     playerBox.classList.remove(
         "rotated"
     );
 
-
-    /*
-       Unlock orientation.
-    */
 
     try{
 
@@ -2443,19 +2988,12 @@ async function exitRotatedMode(
 
     }catch(error){
 
-        console.log(error);
+        console.log(
+            error
+        );
 
     }
 
-
-    /*
-       If exiting through Android Back,
-       the browser has already consumed
-       our history state.
-
-       If exiting through button,
-       remove the extra state.
-    */
 
     if(
         !fromBack &&
@@ -2463,6 +3001,7 @@ async function exitRotatedMode(
     ){
 
         historyStateAdded = false;
+
 
         if(
             location.hash ===
@@ -2487,12 +3026,13 @@ async function exitRotatedMode(
 
 
 /* =====================================================
-   TRUE FULLSCREEN
+   NATIVE FULLSCREEN
 ===================================================== */
 
 async function enterNativeFullscreen(){
 
-    nativeFullscreen = false;
+    nativeFullscreen =
+        false;
 
 
     try{
@@ -2501,9 +3041,11 @@ async function enterNativeFullscreen(){
             document.fullscreenElement
         ){
 
-            nativeFullscreen = true;
+            nativeFullscreen =
+                true;
 
             return true;
+
         }
 
 
@@ -2513,15 +3055,13 @@ async function enterNativeFullscreen(){
 
             await playerBox.requestFullscreen();
 
-            nativeFullscreen = true;
+            nativeFullscreen =
+                true;
 
             return true;
+
         }
 
-
-        /*
-           Safari / WebKit fallback.
-        */
 
         if(
             playerBox.webkitRequestFullscreen
@@ -2529,15 +3069,17 @@ async function enterNativeFullscreen(){
 
             playerBox.webkitRequestFullscreen();
 
-            nativeFullscreen = true;
+            nativeFullscreen =
+                true;
 
             return true;
+
         }
 
     }catch(error){
 
         console.log(
-            "Native fullscreen unavailable:",
+            "Fullscreen:",
             error
         );
 
@@ -2545,11 +3087,12 @@ async function enterNativeFullscreen(){
 
 
     return false;
+
 }
 
 
 /* =====================================================
-   EXIT NATIVE FULLSCREEN
+   EXIT FULLSCREEN
 ===================================================== */
 
 async function exitNativeFullscreen(){
@@ -2573,49 +3116,39 @@ async function exitNativeFullscreen(){
 
     }catch(error){
 
-        console.log(error);
+        console.log(
+            error
+        );
 
     }
 
-    nativeFullscreen = false;
+
+    nativeFullscreen =
+        false;
+
 }
 
 
 /* =====================================================
-   FULLSCREEN BUTTON
+   FULLSCREEN
 ===================================================== */
 
 async function fullscreen(){
-
-    /*
-       If already in 90° mode:
-       return to normal.
-    */
 
     if(isRotated){
 
         await exitNativeFullscreen();
 
-        await exitRotatedMode(false);
+        await exitRotatedMode(
+            false
+        );
 
         return;
+
     }
 
 
-    /*
-       User clicked the button,
-       so request native fullscreen
-       while still inside the gesture.
-    */
-
     await enterNativeFullscreen();
-
-
-    /*
-       CSS rotation is still applied.
-       This is important for Android WebView
-       where orientation lock may not work.
-    */
 
     await enterRotatedMode();
 
@@ -2634,7 +3167,7 @@ fullscreen;
 
 
 /* =====================================================
-   FULLSCREEN CHANGE
+   FULLSCREEN EVENTS
 ===================================================== */
 
 document.addEventListener(
@@ -2645,9 +3178,6 @@ document.addEventListener(
 
     }
 );
-
-
-/* WebKit */
 
 document.addEventListener(
     "webkitfullscreenchange",
@@ -2660,34 +3190,28 @@ document.addEventListener(
 
 
 /* =====================================================
-   ANDROID BACK BUTTON / POPSTATE
+   ANDROID BACK
 ===================================================== */
 
 window.addEventListener(
     "popstate",
     async function(){
 
-        /*
-           First Back:
-           landscape -> portrait
-        */
-
         if(isRotated){
 
-            historyStateAdded = false;
+            historyStateAdded =
+                false;
 
             await exitNativeFullscreen();
 
-            await exitRotatedMode(true);
+            await exitRotatedMode(
+                true
+            );
 
             return;
+
         }
 
-
-        /*
-           Second Back:
-           player -> home
-        */
 
         if(
             playerBox.classList.contains(
@@ -2695,7 +3219,7 @@ window.addEventListener(
             )
         ){
 
-            closePlayer();
+            await closePlayer();
 
         }
 
@@ -2709,17 +3233,17 @@ window.addEventListener(
 
 async function closePlayer(){
 
-    /*
-       If rotated, return to normal.
-    */
-
     if(isRotated){
 
-        historyStateAdded = false;
+        historyStateAdded =
+            false;
 
         await exitNativeFullscreen();
 
-        await exitRotatedMode(true);
+        await exitRotatedMode(
+            true
+        );
+
     }
 
 
@@ -2736,10 +3260,6 @@ async function closePlayer(){
     video.pause();
 
 
-    /*
-       Unload stream to stop network.
-    */
-
     if(shakaPlayer){
 
         try{
@@ -2748,11 +3268,21 @@ async function closePlayer(){
 
         }catch(error){
 
-            console.log(error);
+            console.log(
+                "Unload:",
+                error
+            );
 
         }
 
     }
+
+
+    video.removeAttribute(
+        "src"
+    );
+
+    video.load();
 
 
     playerBox.classList.remove(
@@ -2767,7 +3297,7 @@ async function closePlayer(){
 
 
 /* =====================================================
-   BACK HOME BUTTON
+   BACK HOME
 ===================================================== */
 
 document
@@ -2775,29 +3305,13 @@ document
 .onclick =
 async function(){
 
-    /*
-       If rotated:
-       first return to portrait.
-    */
-
-    if(isRotated){
-
-        historyStateAdded = false;
-
-        await exitNativeFullscreen();
-
-        await exitRotatedMode(true);
-
-    }
-
-
     await closePlayer();
 
 };
 
 
 /* =====================================================
-   PICTURE IN PICTURE
+   PIP
 ===================================================== */
 
 document
@@ -2837,7 +3351,7 @@ async function(){
 
 
 /* =====================================================
-   AUTO HIDE CONTROLS
+   AUTO HIDE
 ===================================================== */
 
 function showControls(){
@@ -2935,10 +3449,6 @@ document.addEventListener(
         }
 
 
-        /*
-           Space
-        */
-
         if(e.code === "Space"){
 
             e.preventDefault();
@@ -2948,26 +3458,20 @@ document.addEventListener(
         }
 
 
-        /*
-           Escape
-        */
-
         if(e.key === "Escape"){
 
             if(isRotated){
 
                 await exitNativeFullscreen();
 
-                await exitRotatedMode(false);
+                await exitRotatedMode(
+                    false
+                );
 
             }
 
         }
 
-
-        /*
-           Left
-        */
 
         if(
             e.key === "ArrowLeft"
@@ -2989,10 +3493,6 @@ document.addEventListener(
 
         }
 
-
-        /*
-           Right
-        */
 
         if(
             e.key === "ArrowRight"
@@ -3019,7 +3519,7 @@ document.addEventListener(
 
 
 /* =====================================================
-   CLOSE QUALITY OUTSIDE
+   OUTSIDE QUALITY MENU
 ===================================================== */
 
 document.addEventListener(
@@ -3027,8 +3527,11 @@ document.addEventListener(
     function(e){
 
         if(
-            !qualityMenu.contains(e.target) &&
-            e.target !== qualityButton
+            !qualityMenu.contains(
+                e.target
+            ) &&
+            e.target !==
+            qualityButton
         ){
 
             qualityMenu.classList.remove(
@@ -3042,7 +3545,37 @@ document.addEventListener(
 
 
 /* =====================================================
-   INITIAL STATE
+   MEDIA ERROR
+===================================================== */
+
+video.addEventListener(
+    "error",
+    function(){
+
+        const mediaError =
+            video.error;
+
+
+        if(
+            mediaError &&
+            !errorBox.classList.contains(
+                "show"
+            )
+        ){
+
+            console.error(
+                "HTML VIDEO ERROR:",
+                mediaError
+            );
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   INITIAL
 ===================================================== */
 
 window.addEventListener(
@@ -3053,12 +3586,18 @@ window.addEventListener(
             "flex";
 
         playerBox.classList.remove(
+            "open"
+        );
+
+        playerBox.classList.remove(
             "rotated"
         );
 
-        isRotated = false;
+        isRotated =
+            false;
 
-        historyStateAdded = false;
+        historyStateAdded =
+            false;
 
     }
 );
