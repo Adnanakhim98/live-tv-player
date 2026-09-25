@@ -2,343 +2,2283 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+<meta name="viewport"
+      content="width=device-width,
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               user-scalable=no">
+
 <title>LIVE TV</title>
+
 <script src="https://cdn.jsdelivr.net/npm/shaka-player@4.16.3/dist/shaka-player.compiled.js"></script>
 
 <style>
-*{box-sizing:border-box}
-html,body{margin:0;width:100%;height:100%;background:#020305;color:#fff;font-family:Arial,sans-serif}
-body{overflow:hidden}
 
-/* HOME */
-#home{
-  min-height:100vh;display:flex;align-items:center;justify-content:center;
-  position:relative;overflow:hidden;
-  background:radial-gradient(circle at center,#10242b 0,#05080b 42%,#010203 100%);
-}
-#home:before,#home:after{
-  content:"";position:absolute;border-radius:50%;filter:blur(2px);pointer-events:none
-}
-#home:before{width:330px;height:330px;border:1px solid rgba(25,216,255,.15);box-shadow:0 0 80px rgba(25,216,255,.12)}
-#home:after{width:520px;height:520px;border:1px solid rgba(25,216,255,.06)}
+/* =====================================================
+   BASIC
+===================================================== */
 
-.brand{position:relative;text-align:center;z-index:2;width:100%;max-width:520px;padding:20px}
+*{
+    box-sizing:border-box;
+    -webkit-tap-highlight-color:transparent;
+}
+
+html,
+body{
+    margin:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    background:#000;
+    color:#fff;
+    font-family:Arial,Helvetica,sans-serif;
+}
+
+
+/* =====================================================
+   HOME
+===================================================== */
+
+.home{
+    width:100%;
+    height:100%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:
+    radial-gradient(
+        circle at center,
+        #092027 0%,
+        #03090c 45%,
+        #000 80%
+    );
+}
+
+.logo-area{
+    width:390px;
+    max-width:90vw;
+
+    text-align:center;
+
+    cursor:pointer;
+    user-select:none;
+
+    animation:fadeIn 0.8s ease;
+}
 
 .logo{
-  width:430px;min-height:210px;margin:auto;border-radius:28px;
-  display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(145deg,rgba(16,27,32,.98),rgba(2,5,7,.98));
-  border:2px solid #19d8ff;
-  box-shadow:0 0 20px rgba(25,216,255,.55),0 0 70px rgba(25,216,255,.15),inset 0 0 30px rgba(25,216,255,.08);
-  transition:.2s;cursor:pointer;-webkit-tap-highlight-color:transparent;
-}
-.logo:active{transform:scale(.96)}
+    width:280px;
+    height:280px;
 
-.match{width:100%;display:flex;align-items:center;justify-content:center;gap:20px}
-.team{width:145px;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.team-logo{
-  width:95px;height:95px;border-radius:50%;object-fit:cover;background:#fff;
-  border:3px solid rgba(255,255,255,.85);box-shadow:0 0 18px rgba(25,216,255,.45)
+    max-width:70vw;
+    max-height:70vw;
+
+    margin:auto;
+
+    position:relative;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:
+    radial-gradient(
+        circle,
+        #101c20 0%,
+        #071115 55%,
+        #020608 100%
+    );
+
+    border:3px solid #18d5ff;
+
+    box-shadow:
+        0 0 20px #00cfff,
+        0 0 60px rgba(0,205,255,.45),
+        inset 0 0 30px rgba(0,205,255,.18);
+
+    transition:.25s;
 }
-.team-name{margin-top:12px;font-size:15px;font-weight:900;letter-spacing:1px;color:#fff;text-transform:uppercase}
-.vs{
-  width:55px;height:55px;border-radius:50%;display:flex;align-items:center;justify-content:center;
-  background:linear-gradient(145deg,#19d8ff,#087e99);color:#001015;font-size:18px;font-weight:1000;
-  box-shadow:0 0 20px rgba(25,216,255,.65);flex-shrink:0
+
+.logo:before{
+    content:"";
+
+    position:absolute;
+
+    inset:-12px;
+
+    border:8px solid transparent;
+
+    border-top-color:#ff743e;
+    border-right-color:#ff743e;
+    border-bottom-color:#ff743e;
+
+    border-radius:47% 53% 45% 55%;
+
+    transform:rotate(-22deg);
+
+    filter:drop-shadow(0 0 7px #ff6332);
 }
-.title{margin-top:22px;font-size:24px;font-weight:900;letter-spacing:4px}
-.subtitle{margin-top:8px;font-size:11px;letter-spacing:2px;color:#8fa2a8}
+
+.logo:after{
+    content:"";
+
+    position:absolute;
+
+    width:155px;
+    height:100px;
+
+    top:30px;
+    right:-18px;
+
+    border-top:7px solid #ff743e;
+
+    border-radius:50%;
+
+    transform:rotate(-10deg);
+
+    filter:drop-shadow(0 0 6px #ff6332);
+}
+
+.tv{
+    position:relative;
+    z-index:2;
+
+    font-size:75px;
+
+    filter:drop-shadow(0 0 8px #55dfff);
+}
+
+.logo-title{
+    margin-top:30px;
+
+    font-size:36px;
+    font-weight:800;
+
+    letter-spacing:6px;
+}
+
+.logo-subtitle{
+    margin-top:15px;
+
+    color:#8c9a9f;
+
+    font-size:17px;
+
+    letter-spacing:5px;
+}
+
 .tap{
-  margin-top:25px;display:inline-block;padding:9px 18px;border:1px solid rgba(25,216,255,.45);
-  border-radius:30px;color:#19d8ff;font-size:12px;letter-spacing:1px
+    width:285px;
+    max-width:80vw;
+
+    height:60px;
+
+    margin:42px auto 0;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    border:1px solid #12bde8;
+    border-radius:35px;
+
+    color:#16caff;
+
+    font-size:16px;
+
+    letter-spacing:2px;
+
+    box-shadow:
+        0 0 12px rgba(0,190,240,.18);
+
+    transition:.25s;
 }
 
-/* PLAYER */
-#playerPage{display:none;position:fixed;inset:0;background:#000;z-index:100}
-video{width:100%;height:100%;object-fit:contain;background:#000}
+.logo-area:hover .tap{
+    background:rgba(0,190,240,.12);
 
-#back{
-  position:absolute;top:16px;left:16px;z-index:110;width:46px;height:46px;
-  border:1px solid rgba(255,255,255,.25);border-radius:50%;
-  background:rgba(0,0,0,.65);color:#fff;font-size:28px;cursor:pointer
+    box-shadow:
+        0 0 25px rgba(0,190,240,.35);
 }
 
-#message{
-  position:absolute;left:50%;bottom:25px;transform:translateX(-50%);z-index:120;
-  padding:10px 16px;border-radius:10px;background:rgba(0,0,0,.78);
-  color:#ddd;font-size:13px;display:none;max-width:90%;text-align:center
+.logo-area:active .logo{
+    transform:scale(.96);
 }
-#message.error{color:#ffb3b3;border:1px solid rgba(255,80,80,.35)}
-#reload{
-  display:none;position:absolute;left:50%;bottom:80px;transform:translateX(-50%);
-  z-index:121;border:1px solid #19d8ff;background:rgba(0,0,0,.8);color:#19d8ff;
-  border-radius:24px;padding:10px 18px;font-weight:700
+
+@keyframes fadeIn{
+    from{
+        opacity:0;
+        transform:scale(.9);
+    }
+
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
 }
+
+
+/* =====================================================
+   PLAYER
+===================================================== */
+
+.player{
+    position:fixed;
+
+    inset:0;
+
+    z-index:100;
+
+    display:none;
+
+    background:#000;
+}
+
+.player.open{
+    display:block;
+}
+
+video{
+    position:absolute;
+
+    inset:0;
+
+    width:100%;
+    height:100%;
+
+    object-fit:contain;
+
+    background:#000;
+}
+
+
+/* =====================================================
+   CONTROLS
+===================================================== */
+
+.controls{
+    position:absolute;
+
+    inset:0;
+
+    z-index:5;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+
+    background:
+    linear-gradient(
+        to bottom,
+        rgba(0,0,0,.72),
+        transparent 25%,
+        transparent 58%,
+        rgba(0,0,0,.95)
+    );
+
+    opacity:1;
+
+    transition:.3s;
+}
+
+.controls.hide{
+    opacity:0;
+    pointer-events:none;
+}
+
+
+/* =====================================================
+   TOP BAR
+===================================================== */
+
+.top{
+    height:70px;
+
+    display:flex;
+    align-items:center;
+
+    padding:12px 16px;
+
+    gap:10px;
+}
+
+.title{
+    flex:1;
+
+    text-align:center;
+
+    font-size:18px;
+    font-weight:bold;
+
+    letter-spacing:3px;
+}
+
+.top-btn{
+    width:46px;
+    height:46px;
+
+    border:0;
+    border-radius:50%;
+
+    background:rgba(0,0,0,.65);
+
+    color:#fff;
+
+    font-size:25px;
+
+    cursor:pointer;
+}
+
+
+/* =====================================================
+   CENTER PLAY
+===================================================== */
+
+.center{
+    flex:1;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+}
+
+.center-play{
+    width:76px;
+    height:76px;
+
+    border:2px solid white;
+
+    border-radius:50%;
+
+    background:rgba(0,0,0,.55);
+
+    color:white;
+
+    font-size:28px;
+
+    cursor:pointer;
+}
+
+
+/* =====================================================
+   BOTTOM
+===================================================== */
+
+.bottom{
+    padding:10px 15px 18px;
+}
+
+.progress-row{
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    margin-bottom:10px;
+
+    font-size:14px;
+}
+
+.progress{
+    flex:1;
+
+    height:5px;
+
+    appearance:none;
+
+    background:#555;
+
+    border-radius:10px;
+
+    outline:none;
+}
+
+.progress::-webkit-slider-thumb{
+    appearance:none;
+
+    width:20px;
+    height:20px;
+
+    border-radius:50%;
+
+    background:#fff;
+}
+
+.progress::-moz-range-thumb{
+    width:20px;
+    height:20px;
+
+    border-radius:50%;
+
+    border:0;
+
+    background:#fff;
+}
+
+.buttons{
+    display:flex;
+
+    align-items:center;
+
+    gap:4px;
+}
+
+.control{
+    min-width:43px;
+    height:43px;
+
+    border:0;
+    border-radius:8px;
+
+    background:transparent;
+
+    color:#fff;
+
+    font-size:19px;
+
+    cursor:pointer;
+}
+
+.control:active{
+    background:rgba(255,255,255,.15);
+}
+
+.volume{
+    width:105px;
+}
+
+
+/* =====================================================
+   QUALITY BUTTON
+===================================================== */
+
+.quality-btn{
+    position:relative;
+}
+
+.quality-btn span{
+    display:block;
+
+    font-size:17px;
+}
+
+
+/* =====================================================
+   QUALITY MENU
+===================================================== */
+
+.quality-menu{
+    position:absolute;
+
+    right:12px;
+    bottom:70px;
+
+    min-width:180px;
+
+    max-height:300px;
+
+    overflow-y:auto;
+
+    display:none;
+
+    padding:8px;
+
+    border-radius:12px;
+
+    background:
+        rgba(15,15,15,.97);
+
+    border:1px solid rgba(255,255,255,.18);
+
+    box-shadow:
+        0 10px 35px rgba(0,0,0,.6);
+
+    z-index:30;
+}
+
+.quality-menu.show{
+    display:block;
+}
+
+.quality-title{
+    padding:9px 12px;
+
+    color:#aaa;
+
+    font-size:12px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+}
+
+.quality-item{
+    width:100%;
+
+    padding:12px;
+
+    border:0;
+
+    border-radius:8px;
+
+    background:transparent;
+
+    color:#fff;
+
+    text-align:left;
+
+    font-size:14px;
+
+    cursor:pointer;
+}
+
+.quality-item:hover{
+    background:rgba(255,255,255,.1);
+}
+
+.quality-item.active{
+    background:#08bde9;
+
+    color:#000;
+
+    font-weight:bold;
+}
+
+
+/* =====================================================
+   LOADING
+===================================================== */
+
+.loading{
+    position:absolute;
+
+    inset:0;
+
+    z-index:20;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    flex-direction:column;
+
+    background:rgba(0,0,0,.7);
+}
+
+.loading.show{
+    display:flex;
+}
+
+.spinner{
+    width:48px;
+    height:48px;
+
+    border:4px solid #333;
+
+    border-top-color:#12d5ff;
+
+    border-radius:50%;
+
+    animation:spin .8s linear infinite;
+}
+
+.loading-text{
+    margin-top:15px;
+
+    color:#ddd;
+
+    font-size:14px;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+
+/* =====================================================
+   ERROR POPUP
+===================================================== */
+
+.error-box{
+    position:absolute;
+
+    inset:0;
+
+    z-index:50;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    background:rgba(0,0,0,.65);
+}
+
+.error-box.show{
+    display:flex;
+}
+
+.error-card{
+    width:100%;
+    max-width:430px;
+
+    padding:28px 22px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    background:#111;
+
+    border:1px solid #333;
+
+    box-shadow:
+        0 15px 50px rgba(0,0,0,.7);
+}
+
+.error-icon{
+    font-size:45px;
+
+    margin-bottom:12px;
+}
+
+.error-title{
+    font-size:22px;
+
+    font-weight:bold;
+
+    margin-bottom:12px;
+}
+
+.error-message{
+    color:#aaa;
+
+    font-size:14px;
+
+    line-height:1.6;
+
+    word-break:break-word;
+}
+
+.error-close{
+    margin-top:22px;
+
+    padding:12px 28px;
+
+    border:0;
+
+    border-radius:30px;
+
+    background:#12c7f4;
+
+    color:#001018;
+
+    font-size:15px;
+
+    font-weight:bold;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
 
 @media(max-width:600px){
-  .brand{padding:15px}
-  .logo{width:94%;min-height:190px;border-radius:24px}
-  .match{gap:8px}
-  .team{width:105px}
-  .team-logo{width:75px;height:75px}
-  .team-name{font-size:12px;margin-top:9px}
-  .vs{width:48px;height:48px;font-size:15px}
-  .title{font-size:20px;letter-spacing:3px}
-  .subtitle{font-size:9px}
+
+    .logo{
+        width:250px;
+        height:250px;
+    }
+
+    .tv{
+        font-size:65px;
+    }
+
+    .logo-title{
+        font-size:31px;
+        letter-spacing:5px;
+    }
+
+    .logo-subtitle{
+        font-size:14px;
+        letter-spacing:4px;
+    }
+
+    .tap{
+        margin-top:35px;
+
+        height:55px;
+
+        font-size:14px;
+    }
+
+    .bottom{
+        padding:7px 8px 12px;
+    }
+
+    .buttons{
+        gap:1px;
+    }
+
+    .control{
+        min-width:37px;
+
+        height:40px;
+
+        font-size:16px;
+    }
+
+    .volume{
+        width:72px;
+    }
+
+    .title{
+        font-size:16px;
+    }
+
+    .quality-menu{
+        right:7px;
+        bottom:62px;
+
+        min-width:165px;
+    }
 }
+
 </style>
 </head>
 
 <body>
 
-<div id="home">
-  <div class="brand">
-    <div class="logo" id="logoButton">
-      <div class="match">
-        <div class="team">
-          <img class="team-logo" src="https://flagcdn.com/w320/bd.png" alt="Bangladesh">
-          <div class="team-name">Bangladesh</div>
+
+<!-- =====================================================
+     HOME SCREEN
+===================================================== -->
+
+<div id="home" class="home">
+
+    <div id="logoArea" class="logo-area">
+
+        <div class="logo">
+
+            <div class="tv">
+                📺
+            </div>
+
         </div>
 
-        <div class="vs">VS</div>
-
-        <div class="team">
-          <img class="team-logo" src="https://flagcdn.com/w320/ar.png" alt="Argentina">
-          <div class="team-name">Argentina</div>
+        <div class="logo-title">
+            LIVE TV
         </div>
-      </div>
+
+        <div class="logo-subtitle">
+            PREMIUM STREAM PLAYER
+        </div>
+
+        <div class="tap">
+            TAP LOGO TO PLAY
+        </div>
+
     </div>
 
-    <div class="title">LIVE TV</div>
-    <div class="subtitle">PREMIUM STREAM PLAYER</div>
-    <div class="tap">TAP MATCH TO PLAY</div>
-  </div>
 </div>
 
-<div id="playerPage">
-  <button id="back" type="button" onclick="closePlayer()">‹</button>
-  <video id="video" controls playsinline></video>
-  <div id="message"></div>
-  <button id="reload" type="button" onclick="openPlayer()">RETRY</button>
+
+<!-- =====================================================
+     PLAYER
+===================================================== -->
+
+<div id="player" class="player">
+
+    <video
+        id="video"
+        playsinline
+        webkit-playsinline
+        preload="auto">
+    </video>
+
+
+    <!-- LOADING -->
+
+    <div id="loading" class="loading">
+
+        <div class="spinner"></div>
+
+        <div class="loading-text">
+            Loading stream...
+        </div>
+
+    </div>
+
+
+    <!-- ERROR -->
+
+    <div id="errorBox" class="error-box">
+
+        <div class="error-card">
+
+            <div class="error-icon">
+                ⚠️
+            </div>
+
+            <div class="error-title">
+                Playback Error
+            </div>
+
+            <div
+                id="errorMessage"
+                class="error-message">
+                MPD stream could not be loaded.
+            </div>
+
+            <button
+                id="errorClose"
+                class="error-close">
+                CLOSE
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- CONTROLS -->
+
+    <div id="controls" class="controls">
+
+
+        <!-- TOP -->
+
+        <div class="top">
+
+            <button
+                id="backHome"
+                class="top-btn">
+                ←
+            </button>
+
+            <div
+                id="playerTitle"
+                class="title">
+                LIVE TV
+            </div>
+
+            <button
+                id="fullscreen"
+                class="top-btn">
+                ⛶
+            </button>
+
+        </div>
+
+
+        <!-- CENTER -->
+
+        <div class="center">
+
+            <button
+                id="centerPlay"
+                class="center-play">
+                ▶
+            </button>
+
+        </div>
+
+
+        <!-- BOTTOM -->
+
+        <div class="bottom">
+
+
+            <div class="progress-row">
+
+                <span id="current">
+                    00:00
+                </span>
+
+                <input
+                    id="progress"
+                    class="progress"
+                    type="range"
+                    min="0"
+                    max="1000"
+                    value="0">
+
+                <span id="duration">
+                    LIVE
+                </span>
+
+            </div>
+
+
+            <div class="buttons">
+
+
+                <!-- PLAY -->
+
+                <button
+                    id="play"
+                    class="control">
+                    ▶
+                </button>
+
+
+                <!-- MUTE -->
+
+                <button
+                    id="mute"
+                    class="control">
+                    🔊
+                </button>
+
+
+                <!-- VOLUME -->
+
+                <input
+                    id="volume"
+                    class="volume"
+                    type="range"
+                    min="0"
+                    max="1"
+                    step=".01"
+                    value="1">
+
+
+                <!-- BACK 10 -->
+
+                <button
+                    id="back10"
+                    class="control">
+                    ↶10
+                </button>
+
+
+                <!-- FORWARD 10 -->
+
+                <button
+                    id="forward10"
+                    class="control">
+                    10↷
+                </button>
+
+
+                <!-- PIP -->
+
+                <button
+                    id="pip"
+                    class="control">
+                    ▣
+                </button>
+
+
+                <!-- QUALITY -->
+
+                <button
+                    id="qualityButton"
+                    class="control quality-btn">
+                    ⚙️
+                </button>
+
+
+                <!-- FULLSCREEN -->
+
+                <button
+                    id="fullscreen2"
+                    class="control">
+                    ⛶
+                </button>
+
+            </div>
+
+
+            <!-- QUALITY MENU -->
+
+            <div
+                id="qualityMenu"
+                class="quality-menu">
+
+                <div class="quality-title">
+                    Video Quality
+                </div>
+
+                <button
+                    class="quality-item active"
+                    data-quality="auto">
+                    Auto
+                </button>
+
+                <div id="qualityList"></div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
 </div>
+
 
 <script>
-/*
-  IMPORTANT:
-  Put ONLY a stream you are authorized to play here.
 
-  Format:
-  MPD_URL|drmScheme=clearkey&drmLicense=KEY_ID:KEY
-
-  Do not publish private DRM credentials in a public repository if they
-  are not intended to be public.
-*/
-const STREAM_URL =
-`https://otte.live.fly.ww.aiv-cdn.net/iad-nitro/live/clients/dash/enc/docqurfrc3/out/v1/1804c33d898a48cb988e15cca0199512/cenc.mpd|drmScheme=clearkey&drmLicense=2fbb11f58d670ba448625bee36773fff:76e8bd546a74e60598e1d59df0b9b3cc`;
-
-let player = null;
-let loading = false;
-
-function showMessage(text, error=false){
-  const el = document.getElementById("message");
-  el.textContent = text;
-  el.className = error ? "error" : "";
-  el.style.display = "block";
-}
-
-function hideMessage(){
-  document.getElementById("message").style.display = "none";
-}
-
-function showRetry(show){
-  document.getElementById("reload").style.display = show ? "block" : "none";
-}
+/* =====================================================
+   STREAM SETTINGS
+===================================================== */
 
 /*
-  Supports:
-  MPD|drmScheme=clearkey&drmLicense=KEY_ID:KEY
+   এখানে আপনার অনুমোদিত MPD URL বসাবেন।
 */
-function parseStream(input){
-  const sep = input.indexOf("|");
 
-  if(sep === -1){
-    return {
-      mpd: input.trim(),
-      drmScheme: "",
-      drmLicense: ""
-    };
-  }
+const MPD_URL =
+"https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/m6sqanvm2m/out/v1/f6beb46c6e9a4132ad739f3ca27df6aa/cenc.mpd";
 
-  const mpd = input.slice(0, sep).trim();
-  const query = input.slice(sep + 1);
 
-  const params = new URLSearchParams(query);
+/*
+   আপনার অনুমোদিত ClearKey থাকলে এখানে দিন।
 
-  return {
-    mpd,
-    drmScheme: (params.get("drmScheme") || "").trim().toLowerCase(),
-    drmLicense: (params.get("drmLicense") || "").trim()
-  };
+   Non-DRM MPD হলে:
+
+   const KID = "";
+   const KEY = "";
+*/
+
+const KID =
+"1444f4235529f183f0a5a486befe9cdb";
+
+const KEY =
+"e5e3fec67a1bb3472a2089c8a0a2557f";
+
+
+const CHANNEL_NAME =
+"LIVE TV";
+
+
+/* =====================================================
+   ELEMENTS
+===================================================== */
+
+const home =
+document.getElementById("home");
+
+const logoArea =
+document.getElementById("logoArea");
+
+const playerBox =
+document.getElementById("player");
+
+const video =
+document.getElementById("video");
+
+const controls =
+document.getElementById("controls");
+
+const loading =
+document.getElementById("loading");
+
+const playerTitle =
+document.getElementById("playerTitle");
+
+const play =
+document.getElementById("play");
+
+const centerPlay =
+document.getElementById("centerPlay");
+
+const mute =
+document.getElementById("mute");
+
+const volume =
+document.getElementById("volume");
+
+const progress =
+document.getElementById("progress");
+
+const current =
+document.getElementById("current");
+
+const duration =
+document.getElementById("duration");
+
+const qualityButton =
+document.getElementById("qualityButton");
+
+const qualityMenu =
+document.getElementById("qualityMenu");
+
+const qualityList =
+document.getElementById("qualityList");
+
+const errorBox =
+document.getElementById("errorBox");
+
+const errorMessage =
+document.getElementById("errorMessage");
+
+
+/* =====================================================
+   VARIABLES
+===================================================== */
+
+let shakaPlayer = null;
+
+let hideTimer = null;
+
+let isLoading = false;
+
+
+/* =====================================================
+   SHOW ERROR
+===================================================== */
+
+function showError(message){
+
+    loading.classList.remove("show");
+
+    errorMessage.textContent =
+        message;
+
+    errorBox.classList.add("show");
+
 }
 
-function parseClearKey(value){
-  const pos = value.indexOf(":");
 
-  if(pos <= 0 || pos === value.length - 1){
-    throw new Error("Invalid ClearKey format. Expected KEY_ID:KEY");
-  }
+/* =====================================================
+   CLOSE ERROR
+===================================================== */
 
-  const keyId = value.slice(0,pos).trim().toLowerCase();
-  const key = value.slice(pos + 1).trim().toLowerCase();
+document
+.getElementById("errorClose")
+.onclick =
+function(){
 
-  if(!keyId || !key){
-    throw new Error("ClearKey ID or key is empty.");
-  }
+    errorBox.classList.remove("show");
 
-  return {keyId, key};
-}
+};
 
-function friendlyError(err){
-  const code = err && err.code ? `Shaka error ${err.code}` : "Unknown playback error";
 
-  if(err && err.data){
-    try{
-      return `${code}: ${err.data.join(" | ")}`;
-    }catch(e){}
-  }
+/* =====================================================
+   SHAKA INITIALIZE
+===================================================== */
 
-  return code;
-}
+async function initPlayer(){
 
-async function openPlayer(){
-  if(loading) return;
-
-  if(!STREAM_URL ||
-     STREAM_URL.includes("PASTE_YOUR_AUTHORIZED_MPD_LINK_HERE")){
-    document.getElementById("home").style.display = "none";
-    document.getElementById("playerPage").style.display = "block";
-    showRetry(false);
-    showMessage("Add your authorized MPD stream in STREAM_URL first.", true);
-    return;
-  }
-
-  loading = true;
-  showRetry(false);
-
-  document.getElementById("home").style.display = "none";
-  document.getElementById("playerPage").style.display = "block";
-  showMessage("Loading stream...");
-
-  try{
     shaka.polyfill.installAll();
 
+
     if(!shaka.Player.isBrowserSupported()){
-      throw new Error("This browser does not support Shaka/DASH playback.");
+
+        showError(
+            "This browser does not support MPD playback."
+        );
+
+        return false;
+
     }
 
-    const data = parseStream(STREAM_URL);
 
-    if(!data.mpd || !/^https?:\/\//i.test(data.mpd)){
-      throw new Error("Invalid MPD URL.");
-    }
+    shakaPlayer =
+        new shaka.Player(video);
 
-    const video = document.getElementById("video");
-
-    if(player){
-      try{ await player.destroy(); }catch(e){}
-      player = null;
-    }
-
-    player = new shaka.Player(video);
-
-    player.addEventListener("error", onShakaError);
 
     /*
-      ClearKey:
-      Shaka accepts a map of key ID -> key.
-      This is for authorized ClearKey streams only.
+       Shaka errors
     */
-    if(data.drmScheme === "clearkey"){
-      if(!data.drmLicense){
-        throw new Error("ClearKey DRM is selected but no license value was provided.");
-      }
 
-      const ck = parseClearKey(data.drmLicense);
+    shakaPlayer.addEventListener(
+        "error",
+        function(event){
 
-      player.configure({
-        drm:{
-          clearKeys:{
-            [ck.keyId]: ck.key
-          }
+            console.error(
+                "Shaka Error:",
+                event.detail
+            );
+
+            const error =
+                event.detail;
+
+            let message =
+                "MPD stream could not be loaded.";
+
+
+            if(error){
+
+                message +=
+                " Error code: " +
+                error.code;
+
+            }
+
+
+            showError(message);
+
         }
-      });
-    }
-
-    await player.load(data.mpd);
-
-    hideMessage();
-    showRetry(false);
-
-    try{
-      await video.play();
-    }catch(e){
-      /*
-        Mobile browsers may block autoplay.
-        The controls remain available, so the user can press Play.
-      */
-      console.log("Autoplay blocked:", e);
-    }
-
-  }catch(err){
-    console.error("Playback error:", err);
-
-    showMessage(
-      "Playback failed. " + (err.message || friendlyError(err)),
-      true
     );
 
-    showRetry(true);
-  }finally{
-    loading = false;
-  }
+
+    return true;
+
 }
 
-function onShakaError(event){
-  const detail = event.detail || event;
 
-  console.error("Shaka error:", detail);
+/* =====================================================
+   OPEN PLAYER
+===================================================== */
 
-  showMessage(
-    "Playback error: " + friendlyError(detail),
-    true
-  );
+logoArea.onclick =
+async function(){
 
-  showRetry(true);
+    home.style.display =
+        "none";
+
+    playerBox.classList.add(
+        "open"
+    );
+
+    playerTitle.textContent =
+        CHANNEL_NAME;
+
+    loading.classList.add(
+        "show"
+    );
+
+
+    if(!shakaPlayer){
+
+        const ok =
+            await initPlayer();
+
+        if(!ok){
+
+            return;
+
+        }
+
+    }
+
+
+    /*
+       CLEARKEY
+    */
+
+    if(KID && KEY){
+
+        shakaPlayer.configure({
+
+            drm:{
+                clearKeys:{
+                    [KID.toLowerCase()]:
+                        KEY.toLowerCase()
+                }
+            }
+
+        });
+
+    }
+
+
+    /*
+       LOAD MPD
+    */
+
+    try{
+
+        isLoading = true;
+
+        await shakaPlayer.load(
+            MPD_URL
+        );
+
+        isLoading = false;
+
+        loading.classList.remove(
+            "show"
+        );
+
+
+        /*
+           Build quality menu
+        */
+
+        buildQualityMenu();
+
+
+        /*
+           Start playback
+        */
+
+        try{
+
+            await video.play();
+
+        }catch(e){
+
+            console.log(
+                "Autoplay blocked"
+            );
+
+        }
+
+
+        updatePlayButton();
+
+        showControls();
+
+    }
+    catch(error){
+
+        isLoading = false;
+
+        console.error(
+            "MPD Load Error:",
+            error
+        );
+
+        showError(
+            "MPD stream could not be loaded. Check the MPD URL, DRM credentials and server CORS permissions."
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   QUALITY MENU
+===================================================== */
+
+function buildQualityMenu(){
+
+    qualityList.innerHTML =
+        "";
+
+
+    if(!shakaPlayer){
+
+        return;
+
+    }
+
+
+    const tracks =
+        shakaPlayer
+        .getVariantTracks();
+
+
+    /*
+       Remove duplicate heights
+    */
+
+    const qualities = {};
+
+
+    tracks.forEach(
+        function(track){
+
+            if(
+                track.height &&
+                !qualities[track.height]
+            ){
+
+                qualities[track.height] =
+                    track;
+
+            }
+
+        }
+    );
+
+
+    const heights =
+        Object.keys(qualities)
+        .map(Number)
+        .sort(
+            (a,b)=>b-a
+        );
+
+
+    /*
+       No quality information
+    */
+
+    if(heights.length === 0){
+
+        const item =
+            document.createElement(
+                "div"
+            );
+
+        item.style.padding =
+            "12px";
+
+        item.style.color =
+            "#aaa";
+
+        item.textContent =
+            "Quality information unavailable";
+
+        qualityList.appendChild(
+            item
+        );
+
+        return;
+
+    }
+
+
+    heights.forEach(
+        function(height){
+
+            const button =
+                document.createElement(
+                    "button"
+                );
+
+            button.className =
+                "quality-item";
+
+            button.textContent =
+                height + "p";
+
+
+            button.onclick =
+            function(){
+
+                selectQuality(
+                    height
+                );
+
+            };
+
+
+            qualityList.appendChild(
+                button
+            );
+
+        }
+    );
+
 }
 
-async function closePlayer(){
-  loading = false;
-  showRetry(false);
 
-  if(player){
-    try{ await player.destroy(); }catch(e){}
-    player = null;
-  }
+/* =====================================================
+   SELECT QUALITY
+===================================================== */
 
-  const video = document.getElementById("video");
+function selectQuality(height){
 
-  video.pause();
-  video.removeAttribute("src");
-  video.load();
+    if(!shakaPlayer){
 
-  hideMessage();
+        return;
 
-  document.getElementById("playerPage").style.display = "none";
-  document.getElementById("home").style.display = "flex";
+    }
+
+
+    const tracks =
+        shakaPlayer
+        .getVariantTracks();
+
+
+    const matching =
+        tracks.filter(
+            function(track){
+
+                return (
+                    track.height ===
+                    height
+                );
+
+            }
+        );
+
+
+    if(!matching.length){
+
+        return;
+
+    }
+
+
+    /*
+       Choose highest bandwidth
+       for selected resolution
+    */
+
+    matching.sort(
+        function(a,b){
+
+            return (
+                b.bandwidth -
+                a.bandwidth
+            );
+
+        }
+    );
+
+
+    shakaPlayer.selectVariantTrack(
+        matching[0],
+        true
+    );
+
+
+    updateQualityActive(
+        height
+    );
+
+
+    qualityMenu.classList.remove(
+        "show"
+    );
+
+
+    showControls();
+
 }
 
-document.getElementById("logoButton").addEventListener("click", openPlayer);
+
+/* =====================================================
+   AUTO QUALITY
+===================================================== */
+
+function setAutoQuality(){
+
+    if(!shakaPlayer){
+
+        return;
+
+    }
+
+
+    /*
+       Re-enable ABR
+    */
+
+    shakaPlayer.configure({
+
+        abr:{
+            enabled:true
+        }
+
+    });
+
+
+    const buttons =
+        qualityMenu
+        .querySelectorAll(
+            ".quality-item"
+        );
+
+
+    buttons.forEach(
+        function(button){
+
+            button.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+    const autoButton =
+        qualityMenu.querySelector(
+            '[data-quality="auto"]'
+        );
+
+
+    if(autoButton){
+
+        autoButton.classList.add(
+            "active"
+        );
+
+    }
+
+
+    qualityMenu.classList.remove(
+        "show"
+    );
+
+    showControls();
+
+}
+
+
+/* =====================================================
+   QUALITY ACTIVE
+===================================================== */
+
+function updateQualityActive(height){
+
+    /*
+       Disable ABR when manually selecting
+    */
+
+    shakaPlayer.configure({
+
+        abr:{
+            enabled:false
+        }
+
+    });
+
+
+    const buttons =
+        qualityMenu
+        .querySelectorAll(
+            ".quality-item"
+        );
+
+
+    buttons.forEach(
+        function(button){
+
+            button.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+    buttons.forEach(
+        function(button){
+
+            if(
+                button.textContent ===
+                height + "p"
+            ){
+
+                button.classList.add(
+                    "active"
+                );
+
+            }
+
+        }
+    );
+
+}
+
+
+/* =====================================================
+   QUALITY BUTTON
+===================================================== */
+
+qualityButton.onclick =
+function(e){
+
+    e.stopPropagation();
+
+    qualityMenu.classList.toggle(
+        "show"
+    );
+
+    showControls();
+
+};
+
+
+/* =====================================================
+   AUTO BUTTON
+===================================================== */
+
+document
+.querySelector(
+    '[data-quality="auto"]'
+)
+.onclick =
+function(){
+
+    setAutoQuality();
+
+};
+
+
+/* =====================================================
+   PLAY / PAUSE
+===================================================== */
+
+function togglePlay(){
+
+    if(video.paused){
+
+        video.play()
+        .catch(
+            ()=>{}
+        );
+
+    }else{
+
+        video.pause();
+
+    }
+
+}
+
+
+function updatePlayButton(){
+
+    if(video.paused){
+
+        play.textContent =
+            "▶";
+
+        centerPlay.textContent =
+            "▶";
+
+    }else{
+
+        play.textContent =
+            "❚❚";
+
+        centerPlay.textContent =
+            "❚❚";
+
+    }
+
+}
+
+
+play.onclick =
+togglePlay;
+
+centerPlay.onclick =
+togglePlay;
+
+
+video.addEventListener(
+    "play",
+    updatePlayButton
+);
+
+video.addEventListener(
+    "pause",
+    updatePlayButton
+);
+
+
+/* =====================================================
+   VOLUME
+===================================================== */
+
+volume.oninput =
+function(){
+
+    video.volume =
+        Number(
+            volume.value
+        );
+
+    video.muted =
+        video.volume === 0;
+
+    updateVolumeIcon();
+
+};
+
+
+mute.onclick =
+function(){
+
+    video.muted =
+        !video.muted;
+
+    updateVolumeIcon();
+
+};
+
+
+function updateVolumeIcon(){
+
+    if(video.muted){
+
+        mute.textContent =
+            "🔇";
+
+    }else{
+
+        mute.textContent =
+            "🔊";
+
+    }
+
+}
+
+
+/* =====================================================
+   PROGRESS
+===================================================== */
+
+video.addEventListener(
+    "timeupdate",
+    function(){
+
+        if(
+            Number.isFinite(
+                video.duration
+            )
+        ){
+
+            current.textContent =
+                formatTime(
+                    video.currentTime
+                );
+
+            duration.textContent =
+                formatTime(
+                    video.duration
+                );
+
+
+            if(
+                video.duration > 0
+            ){
+
+                progress.value =
+                    (
+                        video.currentTime /
+                        video.duration
+                    ) * 1000;
+
+            }
+
+        }else{
+
+            current.textContent =
+                "LIVE";
+
+            duration.textContent =
+                "LIVE";
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   PROGRESS SEEK
+===================================================== */
+
+progress.oninput =
+function(){
+
+    if(
+        Number.isFinite(
+            video.duration
+        )
+    ){
+
+        video.currentTime =
+            (
+                Number(
+                    progress.value
+                ) / 1000
+            ) *
+            video.duration;
+
+    }
+
+};
+
+
+/* =====================================================
+   TIME
+===================================================== */
+
+function formatTime(seconds){
+
+    if(
+        !Number.isFinite(
+            seconds
+        )
+    ){
+
+        return "00:00";
+
+    }
+
+
+    seconds =
+        Math.floor(seconds);
+
+
+    const hours =
+        Math.floor(
+            seconds / 3600
+        );
+
+
+    const minutes =
+        Math.floor(
+            (seconds % 3600) / 60
+        );
+
+
+    const secs =
+        seconds % 60;
+
+
+    if(hours > 0){
+
+        return (
+            String(hours)
+            .padStart(2,"0")
+            +
+            ":" +
+            String(minutes)
+            .padStart(2,"0")
+            +
+            ":" +
+            String(secs)
+            .padStart(2,"0")
+        );
+
+    }
+
+
+    return (
+        String(minutes)
+        .padStart(2,"0")
+        +
+        ":" +
+        String(secs)
+        .padStart(2,"0")
+    );
+
+}
+
+
+/* =====================================================
+   SEEK
+===================================================== */
+
+document
+.getElementById("back10")
+.onclick =
+function(){
+
+    if(
+        Number.isFinite(
+            video.currentTime
+        )
+    ){
+
+        video.currentTime =
+            Math.max(
+                0,
+                video.currentTime - 10
+            );
+
+    }
+
+};
+
+
+document
+.getElementById("forward10")
+.onclick =
+function(){
+
+    if(
+        Number.isFinite(
+            video.duration
+        )
+    ){
+
+        video.currentTime =
+            Math.min(
+                video.duration,
+                video.currentTime + 10
+            );
+
+    }
+
+};
+
+
+/* =====================================================
+   FULLSCREEN
+===================================================== */
+
+async function fullscreen(){
+
+    try{
+
+        if(
+            !document.fullscreenElement
+        ){
+
+            await playerBox
+                .requestFullscreen();
+
+        }else{
+
+            await document
+                .exitFullscreen();
+
+        }
+
+    }catch(error){
+
+        console.log(error);
+
+    }
+
+}
+
+
+document
+.getElementById("fullscreen")
+.onclick =
+fullscreen;
+
+document
+.getElementById("fullscreen2")
+.onclick =
+fullscreen;
+
+
+/* =====================================================
+   PICTURE IN PICTURE
+===================================================== */
+
+document
+.getElementById("pip")
+.onclick =
+async function(){
+
+    try{
+
+        if(
+            document.pictureInPictureElement
+        ){
+
+            await document
+                .exitPictureInPicture();
+
+        }else{
+
+            if(
+                document.pictureInPictureEnabled
+            ){
+
+                await video
+                    .requestPictureInPicture();
+
+            }
+
+        }
+
+    }catch(error){
+
+        console.log(error);
+
+    }
+
+};
+
+
+/* =====================================================
+   BACK HOME
+===================================================== */
+
+document
+.getElementById("backHome")
+.onclick =
+function(){
+
+    video.pause();
+
+    qualityMenu.classList.remove(
+        "show"
+    );
+
+    playerBox.classList.remove(
+        "open"
+    );
+
+    home.style.display =
+        "flex";
+
+};
+
+
+/* =====================================================
+   AUTO HIDE
+===================================================== */
+
+function showControls(){
+
+    controls.classList.remove(
+        "hide"
+    );
+
+
+    clearTimeout(
+        hideTimer
+    );
+
+
+    hideTimer =
+        setTimeout(
+            function(){
+
+                if(
+                    !video.paused &&
+                    !qualityMenu.classList.contains(
+                        "show"
+                    )
+                ){
+
+                    controls.classList.add(
+                        "hide"
+                    );
+
+                }
+
+            },
+            4000
+        );
+
+}
+
+
+/* =====================================================
+   TOUCH / MOUSE
+===================================================== */
+
+playerBox.addEventListener(
+    "mousemove",
+    showControls
+);
+
+playerBox.addEventListener(
+    "touchstart",
+    showControls,
+    {
+        passive:true
+    }
+);
+
+
+video.addEventListener(
+    "click",
+    function(){
+
+        showControls();
+
+    }
+);
+
+
+/* =====================================================
+   KEYBOARD
+===================================================== */
+
+document.addEventListener(
+    "keydown",
+    function(e){
+
+        if(
+            !playerBox.classList.contains(
+                "open"
+            )
+        ){
+
+            return;
+
+        }
+
+
+        if(e.code === "Space"){
+
+            e.preventDefault();
+
+            togglePlay();
+
+        }
+
+
+        if(
+            e.key === "ArrowLeft"
+        ){
+
+            if(
+                Number.isFinite(
+                    video.currentTime
+                )
+            ){
+
+                video.currentTime =
+                    Math.max(
+                        0,
+                        video.currentTime - 10
+                    );
+
+            }
+
+        }
+
+
+        if(
+            e.key === "ArrowRight"
+        ){
+
+            if(
+                Number.isFinite(
+                    video.duration
+                )
+            ){
+
+                video.currentTime =
+                    Math.min(
+                        video.duration,
+                        video.currentTime + 10
+                    );
+
+            }
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   CLOSE QUALITY MENU WHEN CLICK OUTSIDE
+===================================================== */
+
+document.addEventListener(
+    "click",
+    function(e){
+
+        if(
+            !qualityMenu.contains(e.target) &&
+            e.target !== qualityButton
+        ){
+
+            qualityMenu.classList.remove(
+                "show"
+            );
+
+        }
+
+    }
+);
+
 </script>
 
 </body>
