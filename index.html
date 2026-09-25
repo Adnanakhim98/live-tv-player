@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 
 <meta name="viewport"
@@ -35,6 +36,10 @@ body{
     font-family:Arial,Helvetica,sans-serif;
 }
 
+body{
+    touch-action:manipulation;
+}
+
 
 /* =====================================================
    HOME
@@ -66,7 +71,7 @@ body{
     cursor:pointer;
     user-select:none;
 
-    animation:fadeIn 0.8s ease;
+    animation:fadeIn .8s ease;
 }
 
 .logo{
@@ -211,6 +216,7 @@ body{
 }
 
 @keyframes fadeIn{
+
     from{
         opacity:0;
         transform:scale(.9);
@@ -220,6 +226,7 @@ body{
         opacity:1;
         transform:scale(1);
     }
+
 }
 
 
@@ -228,6 +235,7 @@ body{
 ===================================================== */
 
 .player{
+
     position:fixed;
 
     inset:0;
@@ -237,13 +245,56 @@ body{
     display:none;
 
     background:#000;
+
+    overflow:hidden;
+
+    transform:none;
+
+    transform-origin:center center;
+
+    transition:
+        transform .35s ease,
+        width .35s ease,
+        height .35s ease;
 }
 
 .player.open{
     display:block;
 }
 
+
+/* =====================================================
+   90 DEGREE MOBILE LANDSCAPE MODE
+===================================================== */
+
+.player.rotated{
+
+    width:100vh;
+    height:100vw;
+
+    top:50%;
+    left:50%;
+
+    right:auto;
+    bottom:auto;
+
+    inset:auto;
+
+    transform:
+        translate(-50%,-50%)
+        rotate(90deg);
+
+    transform-origin:center center;
+
+}
+
+
+/* =====================================================
+   VIDEO
+===================================================== */
+
 video{
+
     position:absolute;
 
     inset:0;
@@ -262,6 +313,7 @@ video{
 ===================================================== */
 
 .controls{
+
     position:absolute;
 
     inset:0;
@@ -287,16 +339,20 @@ video{
 }
 
 .controls.hide{
+
     opacity:0;
+
     pointer-events:none;
+
 }
 
 
 /* =====================================================
-   TOP BAR
+   TOP
 ===================================================== */
 
 .top{
+
     height:70px;
 
     display:flex;
@@ -308,21 +364,25 @@ video{
 }
 
 .title{
+
     flex:1;
 
     text-align:center;
 
     font-size:18px;
+
     font-weight:bold;
 
     letter-spacing:3px;
 }
 
 .top-btn{
+
     width:46px;
     height:46px;
 
     border:0;
+
     border-radius:50%;
 
     background:rgba(0,0,0,.65);
@@ -336,10 +396,11 @@ video{
 
 
 /* =====================================================
-   CENTER PLAY
+   CENTER
 ===================================================== */
 
 .center{
+
     flex:1;
 
     display:flex;
@@ -349,6 +410,7 @@ video{
 }
 
 .center-play{
+
     width:76px;
     height:76px;
 
@@ -371,10 +433,14 @@ video{
 ===================================================== */
 
 .bottom{
+
+    position:relative;
+
     padding:10px 15px 18px;
 }
 
 .progress-row{
+
     display:flex;
 
     align-items:center;
@@ -387,6 +453,7 @@ video{
 }
 
 .progress{
+
     flex:1;
 
     height:5px;
@@ -401,6 +468,7 @@ video{
 }
 
 .progress::-webkit-slider-thumb{
+
     appearance:none;
 
     width:20px;
@@ -412,6 +480,7 @@ video{
 }
 
 .progress::-moz-range-thumb{
+
     width:20px;
     height:20px;
 
@@ -423,18 +492,22 @@ video{
 }
 
 .buttons{
+
     display:flex;
 
     align-items:center;
 
     gap:4px;
+
 }
 
 .control{
+
     min-width:43px;
     height:43px;
 
     border:0;
+
     border-radius:8px;
 
     background:transparent;
@@ -447,10 +520,13 @@ video{
 }
 
 .control:active{
+
     background:rgba(255,255,255,.15);
+
 }
 
 .volume{
+
     width:105px;
 }
 
@@ -460,13 +536,17 @@ video{
 ===================================================== */
 
 .quality-btn{
+
     position:relative;
+
 }
 
 .quality-btn span{
+
     display:block;
 
     font-size:17px;
+
 }
 
 
@@ -475,9 +555,11 @@ video{
 ===================================================== */
 
 .quality-menu{
+
     position:absolute;
 
     right:12px;
+
     bottom:70px;
 
     min-width:180px;
@@ -492,8 +574,7 @@ video{
 
     border-radius:12px;
 
-    background:
-        rgba(15,15,15,.97);
+    background:rgba(15,15,15,.97);
 
     border:1px solid rgba(255,255,255,.18);
 
@@ -504,10 +585,13 @@ video{
 }
 
 .quality-menu.show{
+
     display:block;
+
 }
 
 .quality-title{
+
     padding:9px 12px;
 
     color:#aaa;
@@ -520,6 +604,7 @@ video{
 }
 
 .quality-item{
+
     width:100%;
 
     padding:12px;
@@ -540,10 +625,13 @@ video{
 }
 
 .quality-item:hover{
+
     background:rgba(255,255,255,.1);
+
 }
 
 .quality-item.active{
+
     background:#08bde9;
 
     color:#000;
@@ -557,6 +645,7 @@ video{
 ===================================================== */
 
 .loading{
+
     position:absolute;
 
     inset:0;
@@ -574,10 +663,13 @@ video{
 }
 
 .loading.show{
+
     display:flex;
+
 }
 
 .spinner{
+
     width:48px;
     height:48px;
 
@@ -591,6 +683,7 @@ video{
 }
 
 .loading-text{
+
     margin-top:15px;
 
     color:#ddd;
@@ -599,17 +692,20 @@ video{
 }
 
 @keyframes spin{
+
     to{
         transform:rotate(360deg);
     }
+
 }
 
 
 /* =====================================================
-   ERROR POPUP
+   ERROR
 ===================================================== */
 
 .error-box{
+
     position:absolute;
 
     inset:0;
@@ -627,11 +723,15 @@ video{
 }
 
 .error-box.show{
+
     display:flex;
+
 }
 
 .error-card{
+
     width:100%;
+
     max-width:430px;
 
     padding:28px 22px;
@@ -649,12 +749,14 @@ video{
 }
 
 .error-icon{
+
     font-size:45px;
 
     margin-bottom:12px;
 }
 
 .error-title{
+
     font-size:22px;
 
     font-weight:bold;
@@ -663,6 +765,7 @@ video{
 }
 
 .error-message{
+
     color:#aaa;
 
     font-size:14px;
@@ -673,6 +776,7 @@ video{
 }
 
 .error-close{
+
     margin-top:22px;
 
     padding:12px 28px;
@@ -698,72 +802,145 @@ video{
 @media(max-width:600px){
 
     .logo{
+
         width:250px;
         height:250px;
+
     }
 
     .tv{
+
         font-size:65px;
+
     }
 
     .logo-title{
+
         font-size:31px;
         letter-spacing:5px;
+
     }
 
     .logo-subtitle{
+
         font-size:14px;
         letter-spacing:4px;
+
     }
 
     .tap{
+
         margin-top:35px;
 
         height:55px;
 
         font-size:14px;
+
     }
 
     .bottom{
+
         padding:7px 8px 12px;
+
     }
 
     .buttons{
+
         gap:1px;
+
     }
 
     .control{
+
         min-width:37px;
 
         height:40px;
 
         font-size:16px;
+
     }
 
     .volume{
+
         width:72px;
+
     }
 
     .title{
+
         font-size:16px;
+
     }
 
     .quality-menu{
+
         right:7px;
+
         bottom:62px;
 
         min-width:165px;
+
     }
+
+}
+
+
+/* =====================================================
+   SMALL LANDSCAPE
+===================================================== */
+
+@media(max-height:500px){
+
+    .top{
+
+        height:55px;
+
+        padding:6px 12px;
+
+    }
+
+    .top-btn{
+
+        width:40px;
+        height:40px;
+
+        font-size:22px;
+
+    }
+
+    .bottom{
+
+        padding:
+            5px 10px 8px;
+
+    }
+
+    .control{
+
+        min-width:38px;
+
+        height:38px;
+
+    }
+
+    .center-play{
+
+        width:65px;
+        height:65px;
+
+    }
+
 }
 
 </style>
+
 </head>
 
 <body>
 
 
 <!-- =====================================================
-     HOME SCREEN
+     HOME
 ===================================================== -->
 
 <div id="home" class="home">
@@ -839,13 +1016,17 @@ video{
             <div
                 id="errorMessage"
                 class="error-message">
+
                 MPD stream could not be loaded.
+
             </div>
 
             <button
                 id="errorClose"
                 class="error-close">
+
                 CLOSE
+
             </button>
 
         </div>
@@ -865,19 +1046,25 @@ video{
             <button
                 id="backHome"
                 class="top-btn">
+
                 ←
+
             </button>
 
             <div
                 id="playerTitle"
                 class="title">
+
                 LIVE TV
+
             </div>
 
             <button
                 id="fullscreen"
                 class="top-btn">
+
                 ⛶
+
             </button>
 
         </div>
@@ -890,7 +1077,9 @@ video{
             <button
                 id="centerPlay"
                 class="center-play">
+
                 ▶
+
             </button>
 
         </div>
@@ -925,25 +1114,23 @@ video{
             <div class="buttons">
 
 
-                <!-- PLAY -->
-
                 <button
                     id="play"
                     class="control">
+
                     ▶
+
                 </button>
 
-
-                <!-- MUTE -->
 
                 <button
                     id="mute"
                     class="control">
+
                     🔊
+
                 </button>
 
-
-                <!-- VOLUME -->
 
                 <input
                     id="volume"
@@ -955,48 +1142,48 @@ video{
                     value="1">
 
 
-                <!-- BACK 10 -->
-
                 <button
                     id="back10"
                     class="control">
+
                     ↶10
+
                 </button>
 
-
-                <!-- FORWARD 10 -->
 
                 <button
                     id="forward10"
                     class="control">
+
                     10↷
+
                 </button>
 
-
-                <!-- PIP -->
 
                 <button
                     id="pip"
                     class="control">
+
                     ▣
+
                 </button>
 
-
-                <!-- QUALITY -->
 
                 <button
                     id="qualityButton"
                     class="control quality-btn">
+
                     ⚙️
+
                 </button>
 
-
-                <!-- FULLSCREEN -->
 
                 <button
                     id="fullscreen2"
                     class="control">
+
                     ⛶
+
                 </button>
 
             </div>
@@ -1015,13 +1202,14 @@ video{
                 <button
                     class="quality-item active"
                     data-quality="auto">
+
                     Auto
+
                 </button>
 
                 <div id="qualityList"></div>
 
             </div>
-
 
         </div>
 
@@ -1036,25 +1224,13 @@ video{
    STREAM SETTINGS
 ===================================================== */
 
-/*
-   এখানে আপনার অনুমোদিত MPD URL বসাবেন।
-*/
-
 const MPD_URL =
 "https://otte.cache.aiv-cdn.net/bom-nitro/live/clients/dash/enc/m6sqanvm2m/out/v1/f6beb46c6e9a4132ad739f3ca27df6aa/cenc.mpd";
 
 
-/*
-   আপনার অনুমোদিত ClearKey থাকলে এখানে দিন।
-
-   Non-DRM MPD হলে:
-
-   const KID = "";
-   const KEY = "";
-*/
-
 const KID =
 "1444f4235529f183f0a5a486befe9cdb";
+
 
 const KEY =
 "e5e3fec67a1bb3472a2089c8a0a2557f";
@@ -1134,11 +1310,13 @@ let shakaPlayer = null;
 
 let hideTimer = null;
 
-let isLoading = false;
+let isRotated = false;
+
+let historyAdded = false;
 
 
 /* =====================================================
-   SHOW ERROR
+   ERROR
 ===================================================== */
 
 function showError(message){
@@ -1153,10 +1331,6 @@ function showError(message){
 }
 
 
-/* =====================================================
-   CLOSE ERROR
-===================================================== */
-
 document
 .getElementById("errorClose")
 .onclick =
@@ -1168,7 +1342,7 @@ function(){
 
 
 /* =====================================================
-   SHAKA INITIALIZE
+   SHAKA INIT
 ===================================================== */
 
 async function initPlayer(){
@@ -1176,7 +1350,9 @@ async function initPlayer(){
     shaka.polyfill.installAll();
 
 
-    if(!shaka.Player.isBrowserSupported()){
+    if(
+        !shaka.Player.isBrowserSupported()
+    ){
 
         showError(
             "This browser does not support MPD playback."
@@ -1190,10 +1366,6 @@ async function initPlayer(){
     shakaPlayer =
         new shaka.Player(video);
 
-
-    /*
-       Shaka errors
-    */
 
     shakaPlayer.addEventListener(
         "error",
@@ -1210,15 +1382,13 @@ async function initPlayer(){
             let message =
                 "MPD stream could not be loaded.";
 
-
             if(error){
 
                 message +=
-                " Error code: " +
-                error.code;
+                    " Error code: " +
+                    error.code;
 
             }
-
 
             showError(message);
 
@@ -1267,9 +1437,7 @@ async function(){
     }
 
 
-    /*
-       CLEARKEY
-    */
+    /* CLEARKEY */
 
     if(KID && KEY){
 
@@ -1287,35 +1455,21 @@ async function(){
     }
 
 
-    /*
-       LOAD MPD
-    */
+    /* LOAD */
 
     try{
-
-        isLoading = true;
 
         await shakaPlayer.load(
             MPD_URL
         );
-
-        isLoading = false;
 
         loading.classList.remove(
             "show"
         );
 
 
-        /*
-           Build quality menu
-        */
-
         buildQualityMenu();
 
-
-        /*
-           Start playback
-        */
 
         try{
 
@@ -1336,8 +1490,6 @@ async function(){
 
     }
     catch(error){
-
-        isLoading = false;
 
         console.error(
             "MPD Load Error:",
@@ -1362,7 +1514,6 @@ function buildQualityMenu(){
     qualityList.innerHTML =
         "";
 
-
     if(!shakaPlayer){
 
         return;
@@ -1371,13 +1522,8 @@ function buildQualityMenu(){
 
 
     const tracks =
-        shakaPlayer
-        .getVariantTracks();
+        shakaPlayer.getVariantTracks();
 
-
-    /*
-       Remove duplicate heights
-    */
 
     const qualities = {};
 
@@ -1407,11 +1553,7 @@ function buildQualityMenu(){
         );
 
 
-    /*
-       No quality information
-    */
-
-    if(heights.length === 0){
+    if(!heights.length){
 
         const item =
             document.createElement(
@@ -1450,7 +1592,6 @@ function buildQualityMenu(){
             button.textContent =
                 height + "p";
 
-
             button.onclick =
             function(){
 
@@ -1459,7 +1600,6 @@ function buildQualityMenu(){
                 );
 
             };
-
 
             qualityList.appendChild(
                 button
@@ -1485,8 +1625,7 @@ function selectQuality(height){
 
 
     const tracks =
-        shakaPlayer
-        .getVariantTracks();
+        shakaPlayer.getVariantTracks();
 
 
     const matching =
@@ -1509,11 +1648,6 @@ function selectQuality(height){
     }
 
 
-    /*
-       Choose highest bandwidth
-       for selected resolution
-    */
-
     matching.sort(
         function(a,b){
 
@@ -1532,15 +1666,55 @@ function selectQuality(height){
     );
 
 
-    updateQualityActive(
-        height
+    shakaPlayer.configure({
+
+        abr:{
+            enabled:false
+        }
+
+    });
+
+
+    document
+    .querySelectorAll(
+        ".quality-item"
+    )
+    .forEach(
+        function(button){
+
+            button.classList.remove(
+                "active"
+            );
+
+        }
+    );
+
+
+    document
+    .querySelectorAll(
+        ".quality-item"
+    )
+    .forEach(
+        function(button){
+
+            if(
+                button.textContent ===
+                height + "p"
+            ){
+
+                button.classList.add(
+                    "active"
+                );
+
+            }
+
+        }
     );
 
 
     qualityMenu.classList.remove(
         "show"
     );
-
 
     showControls();
 
@@ -1560,10 +1734,6 @@ function setAutoQuality(){
     }
 
 
-    /*
-       Re-enable ABR
-    */
-
     shakaPlayer.configure({
 
         abr:{
@@ -1573,14 +1743,11 @@ function setAutoQuality(){
     });
 
 
-    const buttons =
-        qualityMenu
-        .querySelectorAll(
-            ".quality-item"
-        );
-
-
-    buttons.forEach(
+    document
+    .querySelectorAll(
+        ".quality-item"
+    )
+    .forEach(
         function(button){
 
             button.classList.remove(
@@ -1591,15 +1758,15 @@ function setAutoQuality(){
     );
 
 
-    const autoButton =
-        qualityMenu.querySelector(
+    const auto =
+        document.querySelector(
             '[data-quality="auto"]'
         );
 
 
-    if(autoButton){
+    if(auto){
 
-        autoButton.classList.add(
+        auto.classList.add(
             "active"
         );
 
@@ -1615,61 +1782,12 @@ function setAutoQuality(){
 }
 
 
-/* =====================================================
-   QUALITY ACTIVE
-===================================================== */
-
-function updateQualityActive(height){
-
-    /*
-       Disable ABR when manually selecting
-    */
-
-    shakaPlayer.configure({
-
-        abr:{
-            enabled:false
-        }
-
-    });
-
-
-    const buttons =
-        qualityMenu
-        .querySelectorAll(
-            ".quality-item"
-        );
-
-
-    buttons.forEach(
-        function(button){
-
-            button.classList.remove(
-                "active"
-            );
-
-        }
-    );
-
-
-    buttons.forEach(
-        function(button){
-
-            if(
-                button.textContent ===
-                height + "p"
-            ){
-
-                button.classList.add(
-                    "active"
-                );
-
-            }
-
-        }
-    );
-
-}
+document
+.querySelector(
+    '[data-quality="auto"]'
+)
+.onclick =
+setAutoQuality;
 
 
 /* =====================================================
@@ -1691,23 +1809,7 @@ function(e){
 
 
 /* =====================================================
-   AUTO BUTTON
-===================================================== */
-
-document
-.querySelector(
-    '[data-quality="auto"]'
-)
-.onclick =
-function(){
-
-    setAutoQuality();
-
-};
-
-
-/* =====================================================
-   PLAY / PAUSE
+   PLAY
 ===================================================== */
 
 function togglePlay(){
@@ -1777,9 +1879,7 @@ volume.oninput =
 function(){
 
     video.volume =
-        Number(
-            volume.value
-        );
+        Number(volume.value);
 
     video.muted =
         video.volume === 0;
@@ -1802,17 +1902,12 @@ function(){
 
 function updateVolumeIcon(){
 
-    if(video.muted){
-
-        mute.textContent =
-            "🔇";
-
-    }else{
-
-        mute.textContent =
-            "🔊";
-
-    }
+    mute.textContent =
+        video.muted
+        ?
+        "🔇"
+        :
+        "🔊";
 
 }
 
@@ -1842,9 +1937,7 @@ video.addEventListener(
                 );
 
 
-            if(
-                video.duration > 0
-            ){
+            if(video.duration > 0){
 
                 progress.value =
                     (
@@ -1868,10 +1961,6 @@ video.addEventListener(
 );
 
 
-/* =====================================================
-   PROGRESS SEEK
-===================================================== */
-
 progress.oninput =
 function(){
 
@@ -1883,9 +1972,8 @@ function(){
 
         video.currentTime =
             (
-                Number(
-                    progress.value
-                ) / 1000
+                Number(progress.value) /
+                1000
             ) *
             video.duration;
 
@@ -1901,9 +1989,7 @@ function(){
 function formatTime(seconds){
 
     if(
-        !Number.isFinite(
-            seconds
-        )
+        !Number.isFinite(seconds)
     ){
 
         return "00:00";
@@ -1934,28 +2020,23 @@ function formatTime(seconds){
     if(hours > 0){
 
         return (
-            String(hours)
-            .padStart(2,"0")
+            String(hours).padStart(2,"0")
             +
             ":" +
-            String(minutes)
-            .padStart(2,"0")
+            String(minutes).padStart(2,"0")
             +
             ":" +
-            String(secs)
-            .padStart(2,"0")
+            String(secs).padStart(2,"0")
         );
 
     }
 
 
     return (
-        String(minutes)
-        .padStart(2,"0")
+        String(minutes).padStart(2,"0")
         +
         ":" +
-        String(secs)
-        .padStart(2,"0")
+        String(secs).padStart(2,"0")
     );
 
 }
@@ -2010,10 +2091,180 @@ function(){
 
 
 /* =====================================================
-   FULLSCREEN
+   90 DEGREE ROTATION
+===================================================== */
+
+async function enterRotatedMode(){
+
+    if(isRotated){
+
+        return;
+
+    }
+
+
+    isRotated = true;
+
+
+    /*
+       Add browser history state.
+       Android Back button will
+       return to normal mode.
+    */
+
+    if(!historyAdded){
+
+        history.pushState(
+            {
+                playerLandscape:true
+            },
+            "",
+            "#landscape"
+        );
+
+        historyAdded = true;
+
+    }
+
+
+    playerBox.classList.add(
+        "rotated"
+    );
+
+
+    /*
+       Try native landscape lock.
+       If browser doesn't support it,
+       CSS rotation still works.
+    */
+
+    try{
+
+        if(
+            screen.orientation &&
+            screen.orientation.lock
+        ){
+
+            await screen.orientation
+                .lock("landscape")
+                .catch(
+                    ()=>{}
+                );
+
+        }
+
+    }catch(e){
+
+        console.log(
+            "Orientation lock unavailable"
+        );
+
+    }
+
+
+    showControls();
+
+}
+
+
+/* =====================================================
+   EXIT ROTATED MODE
+===================================================== */
+
+async function exitRotatedMode(
+    removeHistory = true
+){
+
+    if(!isRotated){
+
+        return;
+
+    }
+
+
+    isRotated = false;
+
+
+    playerBox.classList.remove(
+        "rotated"
+    );
+
+
+    /*
+       Unlock phone orientation
+    */
+
+    try{
+
+        if(
+            screen.orientation &&
+            screen.orientation.unlock
+        ){
+
+            screen.orientation.unlock();
+
+        }
+
+    }catch(e){
+
+        console.log(e);
+
+    }
+
+
+    /*
+       Remove #landscape history
+       when requested.
+    */
+
+    if(
+        removeHistory &&
+        historyAdded
+    ){
+
+        historyAdded = false;
+
+
+        if(
+            location.hash ===
+            "#landscape"
+        ){
+
+            history.back();
+
+        }
+
+    }
+
+
+    showControls();
+
+}
+
+
+/* =====================================================
+   FULLSCREEN BUTTON
 ===================================================== */
 
 async function fullscreen(){
+
+    /*
+       If already rotated,
+       return to normal.
+    */
+
+    if(isRotated){
+
+        await exitRotatedMode();
+
+        return;
+
+    }
+
+
+    /*
+       First try browser fullscreen.
+    */
 
     try{
 
@@ -2021,21 +2272,33 @@ async function fullscreen(){
             !document.fullscreenElement
         ){
 
-            await playerBox
-                .requestFullscreen();
+            if(
+                playerBox.requestFullscreen
+            ){
 
-        }else{
+                await playerBox.requestFullscreen()
+                .catch(
+                    ()=>{}
+                );
 
-            await document
-                .exitFullscreen();
+            }
 
         }
 
-    }catch(error){
+    }catch(e){
 
-        console.log(error);
+        console.log(
+            "Fullscreen unavailable"
+        );
 
     }
+
+
+    /*
+       Then rotate 90 degrees.
+    */
+
+    await enterRotatedMode();
 
 }
 
@@ -2045,10 +2308,137 @@ document
 .onclick =
 fullscreen;
 
+
 document
 .getElementById("fullscreen2")
 .onclick =
 fullscreen;
+
+
+/* =====================================================
+   FULLSCREEN CHANGE
+===================================================== */
+
+document.addEventListener(
+    "fullscreenchange",
+    function(){
+
+        /*
+           If user exits browser
+           fullscreen manually,
+           keep player rotation until
+           Back or fullscreen button.
+        */
+
+        showControls();
+
+    }
+);
+
+
+/* =====================================================
+   ANDROID BACK BUTTON
+===================================================== */
+
+/*
+   When #landscape exists,
+   browser back triggers popstate.
+*/
+
+window.addEventListener(
+    "popstate",
+    function(){
+
+        if(isRotated){
+
+            /*
+               Do NOT call history.back()
+               again here.
+            */
+
+            historyAdded = false;
+
+            exitRotatedMode(false);
+
+            return;
+
+        }
+
+        /*
+           If normal player is open,
+           go back to home.
+        */
+
+        if(
+            playerBox.classList.contains(
+                "open"
+            )
+        ){
+
+            closePlayer();
+
+        }
+
+    }
+);
+
+
+/* =====================================================
+   CLOSE PLAYER
+===================================================== */
+
+function closePlayer(){
+
+    if(isRotated){
+
+        exitRotatedMode(false);
+
+    }
+
+
+    qualityMenu.classList.remove(
+        "show"
+    );
+
+
+    video.pause();
+
+
+    playerBox.classList.remove(
+        "open"
+    );
+
+
+    home.style.display =
+        "flex";
+
+}
+
+
+/* =====================================================
+   BACK HOME BUTTON
+===================================================== */
+
+document
+.getElementById("backHome")
+.onclick =
+function(){
+
+    /*
+       If rotated, first return
+       to normal mode.
+    */
+
+    if(isRotated){
+
+        exitRotatedMode(false);
+
+    }
+
+
+    closePlayer();
+
+};
 
 
 /* =====================================================
@@ -2087,31 +2477,6 @@ async function(){
         console.log(error);
 
     }
-
-};
-
-
-/* =====================================================
-   BACK HOME
-===================================================== */
-
-document
-.getElementById("backHome")
-.onclick =
-function(){
-
-    video.pause();
-
-    qualityMenu.classList.remove(
-        "show"
-    );
-
-    playerBox.classList.remove(
-        "open"
-    );
-
-    home.style.display =
-        "flex";
 
 };
 
@@ -2165,6 +2530,7 @@ playerBox.addEventListener(
     showControls
 );
 
+
 playerBox.addEventListener(
     "touchstart",
     showControls,
@@ -2212,9 +2578,18 @@ document.addEventListener(
         }
 
 
-        if(
-            e.key === "ArrowLeft"
-        ){
+        if(e.key === "Escape"){
+
+            if(isRotated){
+
+                exitRotatedMode();
+
+            }
+
+        }
+
+
+        if(e.key === "ArrowLeft"){
 
             if(
                 Number.isFinite(
@@ -2233,9 +2608,7 @@ document.addEventListener(
         }
 
 
-        if(
-            e.key === "ArrowRight"
-        ){
+        if(e.key === "ArrowRight"){
 
             if(
                 Number.isFinite(
@@ -2258,7 +2631,7 @@ document.addEventListener(
 
 
 /* =====================================================
-   CLOSE QUALITY MENU WHEN CLICK OUTSIDE
+   CLOSE QUALITY OUTSIDE
 ===================================================== */
 
 document.addEventListener(
@@ -2275,6 +2648,21 @@ document.addEventListener(
             );
 
         }
+
+    }
+);
+
+
+/* =====================================================
+   INITIAL STATE
+===================================================== */
+
+window.addEventListener(
+    "load",
+    function(){
+
+        home.style.display =
+            "flex";
 
     }
 );
